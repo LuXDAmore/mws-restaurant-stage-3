@@ -1,0 +1,104 @@
+<IfModule mod_rewrite.c>
+
+	Options -MultiViews
+
+	RewriteEngine On
+
+	# Serve Brotli compressed CSS and JS files if they exist and the client accepts Brotli.
+	RewriteCond "%{HTTP:Accept-encoding}" "br"
+	RewriteCond "%{REQUEST_FILENAME}\.br" "-s"
+	RewriteRule "^(.*)\.(js|css)" "$1\.$2\.br" [QSA]
+
+	# Serve correct content types, and prevent double compression.
+	RewriteRule "\.css\.br$" "-" [T=text/css,E=no-brotli:1]
+	RewriteRule "\.js\.br$"  "-" [T=text/javascript,E=no-brotli:1]
+
+	# Serve GZip compressed CSS and JS files if they exist and the client accepts GZip.
+	RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+	RewriteCond "%{REQUEST_FILENAME}\.gz" "-s"
+	RewriteRule "^(.*)\.(js|css)" "$1\.$2\.gz" [QSA]
+
+	# Serve correct content types, and prevent double compression.
+	RewriteRule "\.css\.gz$" "-" [T=text/css,E=no-gzip:1]
+	RewriteRule "\.js\.gz$"  "-" [T=text/javascript,E=no-gzip:1]
+
+	# Force HTTPS
+	RewriteCond %{HTTPS} !on
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+</IfModule>
+
+<IfModule mod_filter.c>
+
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml
+
+	<IfModule mod_brotli.c>
+
+		AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml
+
+	</IfModule>
+
+</IfModule>
+
+<ifModule mod_gzip.c>
+
+	mod_gzip_on Yes
+	mod_gzip_dechunk Yes
+	mod_gzip_item_include file .(html?|txt|css|js|json|php|pl|br)$
+	mod_gzip_item_include handler ^cgi-script$
+	mod_gzip_item_include mime ^font/.*
+	mod_gzip_item_include mime ^text/.*
+	mod_gzip_item_include mime ^application/javascript.*
+	mod_gzip_item_exclude mime ^image/.*
+	mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+
+</ifModule>
+
+<IfModule mod_headers.c>
+
+	Header set Access-Control-Allow-Origin "*"
+
+	# Specify Brotli assets
+	<FilesMatch "(\.js\.br|\.css\.br)$">
+
+		Header set Content-Encoding br
+
+		Header append Vary Accept-Encoding
+
+	</FilesMatch>
+
+	# Specify GZip assets
+	<FilesMatch "(\.js\.gz|\.css\.gz)$">
+
+		Header set Content-Encoding gzip
+
+		Header append Vary Accept-Encoding
+
+	</FilesMatch>
+
+	<FilesMatch "\.html$">
+
+		Header set Cache-Control "no-cache"
+
+	</FilesMatch>
+
+	# Service worker
+	<FilesMatch "\sw\.js$">
+
+		Header set Cache-Control "max-age=0, no-cache"
+
+	</FilesMatch>
+
+	<FilesMatch "\.js$">
+
+		Header set Cache-Control "max-age=31536000, private"
+
+	</FilesMatch>
+
+	<FilesMatch "\.(css|json|webp|svg|jpg|jpeg|png|gif|bmp|cur)$">
+
+		Header set Cache-Control "max-age=31536000"
+
+	</FilesMatch>
+
+</IfModule>

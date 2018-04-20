@@ -1,25 +1,124 @@
 {
-  "name": "Restaurant-Reviews",
-  "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
-  "keywords": [],
-  "dependencies": {
-    "include-all": "^1.0.0",
-    "rc": "1.0.1",
-    "sails": "^0.12.13",
-    "sails-disk": "~0.10.9"
-  },
-  "scripts": {
-    "debug": "node debug app.js",
-    "start": "node app.js"
-  },
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/brandy/Restaurant-Reviews.git"
-  },
-  "author": "Brandy Lee Camacho",
-  "linkedIn": "https://www.linkedin.com/in/brandycamacho/",
-  "email": "brandy@udacity.com"
+	"name": "mws-restaurant-stage-3",
+	"version": "3.0.0",
+	"description": "RESTAURANT REVIEWS",
+	"main": "./dist/index.html",
+	"scripts": {
+		"test": "test",
+		"debug": "node inspect app.js",
+		"prestart": "cross-env NODE_ENV=production gulp sailsjs --silent --no-warnings",
+		"start": "cross-env NODE_ENV=production node app.js",
+		"clean": "gulp clean:all",
+		"clear": "gulp clean:all",
+		"sailsjs": "npm run build:sailsjs && npm run start",
+		"serve": "cross-env NODE_ENV=development gulp serve",
+		"dev": "cross-env NODE_ENV=development gulp serve",
+		"staging": "cross-env NODE_ENV=staging gulp serve:staging",
+		"serve:staging": "cross-env NODE_ENV=staging gulp serve:staging",
+		"production": "cross-env NODE_ENV=production gulp serve:production",
+		"serve:production": "cross-env NODE_ENV=production gulp serve:production",
+		"view": "cross-env NODE_ENV=production gulp view:production",
+		"build:development": "cross-env NODE_ENV=development gulp build:development",
+		"build:testing": "cross-env NODE_ENV=testing gulp build:testing",
+		"build:staging": "cross-env NODE_ENV=staging gulp build:staging",
+		"build:production": "cross-env NODE_ENV=production gulp build:production",
+		"build": "cross-env NODE_ENV=production gulp build --silent --no-warnings",
+		"build:sailsjs": "cross-env NODE_ENV=production gulp sailsjs --silent --no-warnings",
+		"build:github:pages": "cross-env NODE_ENV=production gulp github:pages --silent --no-warnings",
+		"bower": "bower install",
+		"gulp": "gulp",
+		"prebower": "bower cache clean",
+		"predev": "npm install",
+		"prebuild:sailsjs": "npm install",
+		"preproduction": "npm install",
+		"prebuild": "npm install",
+		"prebuild:github:pages": "npm install",
+		"postinstall": "bower install"
+	},
+	"directories": {
+		"dist": "dist",
+		"doc": "docs"
+	},
+	"keywords": [
+		"google",
+		"udacity",
+		"udacity-nanodegree",
+		"restaurant",
+		"nanodegree"
+	],
+	"author": "Luca Iaconelli <lucabelli9@gmail.com> (https://github.com/luxdamore)",
+	"license": "ISC",
+	"private": true,
+	"homepage": "https://luxdamore.github.com/mws-restaurant-stage-3/",
+	"bugs": {
+		"url": "https://github.com/LuXDAmore/mws-restaurant-stage-3/issues"
+	},
+	"devDependencies": {
+		"babel-eslint": "^7.2.3",
+		"babel-plugin-istanbul": "^4.1.6",
+		"babel-plugin-transform-runtime": "^6.23.0",
+		"babel-preset-env": "^1.6.1",
+		"babel-preset-stage-2": "^6.24.1",
+		"bower": "^1.8.4",
+		"browser-sync": "^2.18.13",
+		"browserslist": "^2.10.0",
+		"cross-env": "^5.1.4",
+		"del": "^3.0.0",
+		"eslint": "^3.19.0",
+		"eslint-plugin-compat": "^1.0.4",
+		"glob": "^7.1.2",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^4.0.0",
+		"gulp-babel": "^6.1.2",
+		"gulp-brotli": "^1.2.1",
+		"gulp-clean-css": "^3.9.3",
+		"gulp-concat": "^2.6.1",
+		"gulp-cssnano": "^2.1.2",
+		"gulp-environments": "^0.1.2",
+		"gulp-eslint": "^3.0.1",
+		"gulp-filter": "^5.0.1",
+		"gulp-htmlhint": "^0.3.1",
+		"gulp-htmlmin": "^3.0.0",
+		"gulp-if": "^2.0.2",
+		"gulp-imagemin": "^4.1.0",
+		"gulp-inject": "^4.3.2",
+		"gulp-inject-string": "^1.1.0",
+		"gulp-json-minify": "^1.2.2",
+		"gulp-main-bower-files": "^1.6.2",
+		"gulp-rev": "^7.1.2",
+		"gulp-sass": "^3.2.1",
+		"gulp-sequence": "^0.4.6",
+		"gulp-sourcemaps": "^2.5.1",
+		"gulp-stylelint": "^3.9.0",
+		"gulp-uglify": "^2.1.2",
+		"gulp-util": "^3.0.8",
+		"gulp-webserver": "^0.9.1",
+		"modern-normalize": "^0.4.0",
+		"stylelint": "^9.2.0",
+		"stylelint-no-unsupported-browser-features": "^1.0.1",
+		"workbox-build": "^3.1.0"
+	},
+	"dependencies": {
+		"babel-polyfill": "^6.26.0",
+		"babel-runtime": "^6.26.0",
+		"critical": "^1.2.2",
+		"include-all": "^1.0.0",
+		"rc": "1.0.1",
+		"sails": "^0.12.13",
+		"sails-disk": "~0.10.9",
+		"workbox-sw": "^3.1.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/LuXDAmore/mws-restaurant-stage-3/"
+	},
+	"engines": {
+		"node": ">= 4.0.0",
+		"npm": ">= 3.0.0"
+	},
+	"browserslist": [
+		"> 5%",
+		"last 2 versions",
+		"not ie <= 11"
+	]
 }

@@ -1,0 +1,281 @@
+:root, html {
+	font-size: 16px;
+}
+
+/* CSS Document */
+
+body {
+	font-size: 14pt;
+	color: #333;
+	line-height: 1.5;
+	background-color: #fdfdfd;
+	margin: 0;
+	position: relative;
+}
+
+ul,
+ol,
+li {
+	font-size: 12pt;
+	color: #333;
+}
+
+a {
+	text-decoration: none;
+}
+
+a img {
+	border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 20px;
+}
+
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+#footer {
+	font-size: 12pt;
+	padding: 24px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* ====================== Navigation ====================== */
+
+nav {
+	width: 100%;
+	min-height: 80px;
+	background-color: #333;
+	text-align: center;
+	padding: 8px;
+}
+
+nav h1 {
+	margin: 0 auto;
+	padding: 0 24px;
+}
+
+nav h1 a {
+	color: #fff;
+	font-size: 14pt;
+	font-weight: 200;
+	letter-spacing: 10px;
+	text-transform: uppercase;
+	display: block;
+}
+
+#breadcrumb {
+	padding: 8px 16px 12px;
+	list-style: none;
+	background-color: #143e59;
+	margin: 0 auto;
+	line-height: 1;
+}
+
+/* Display list items side by side */
+
+#breadcrumb li {
+	display: inline;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+
+#breadcrumb li + li:before {
+	padding: 8px;
+	color: #fff;
+	content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+
+#breadcrumb li a {
+	text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+
+#breadcrumb li a:hover {
+	text-decoration: underline;
+}
+
+/* ====================== Map ====================== */
+
+#map {
+	height: 400px;
+	width: 100%;
+}
+
+/* ====================== Restaurant Filtering ====================== */
+
+.filter-options {
+	width: 100%;
+	padding: 8px;
+	background-color: #143e59;
+	align-items: center !important;
+}
+
+.filter-options h2 {
+	color: #fff;
+	font-size: 1rem;
+	font-weight: normal;
+	line-height: 1;
+	margin-bottom: 4px;
+}
+
+.filter-options > .fields {
+	flex-grow: 1;
+	text-align: center;
+	margin: 4px auto;
+	padding: 0;
+	border: 0;
+}
+
+.filter-options select {
+	background-color: #fff;
+	font-size: 12pt;
+	height: 32px;
+	margin: 0 auto;
+	padding: 0 8px;
+	min-width: 200px;
+	max-width: 100%;
+}
+
+/* ====================== Restaurant Listing ====================== */
+
+#restaurants-list {
+	list-style: none;
+	margin: 0 auto;
+	padding: 8px 16px;
+	text-align: center;
+}
+
+#restaurants-list li {
+	background-color: #fff;
+	margin: 16px 8px;
+	min-height: 433.5px;
+	padding: 0;
+	text-align: center;
+	width: 400px;
+	max-width: 100%;
+	min-width: 300px;
+	line-height: 1;
+	border-radius: 2px;
+}
+
+#restaurants-list li h3 {
+	font-size: 14pt;
+	font-weight: bold;
+	letter-spacing: 0;
+	color: #143e59;
+	margin: 20px 0 10px;
+	padding: 0 8px;
+	text-transform: uppercase;
+}
+
+#restaurants-list p {
+	margin: 0 auto;
+	font-size: 12pt;
+	padding: 0 8px;
+	font-weight: 200;
+	line-height: 1.5;
+}
+
+#restaurants-list li a {
+	display: inline-block;
+	color: #fff;
+	font-size: 12pt;
+	margin: 16px auto;
+	padding: 8px 32px;
+	text-transform: uppercase;
+	background-color: #143e59;
+}
+
+/* ====================== Restaurant Details ====================== */
+
+#restaurant-name {
+	font-size: 20pt;
+	font-weight: 200;
+	letter-spacing: 0;
+	margin: 15px 0 30px;
+	text-transform: uppercase;
+	line-height: 1.1;
+}
+
+#restaurant-img,
+#restaurant-address,
+#restaurant-hours,
+#restaurant-cuisine {
+	width: 100%;
+}
+
+#restaurant-address {
+	font-size: 12pt;
+	margin: 8px auto;
+}
+
+#restaurant-cuisine {
+	background-color: #333;
+	color: #fff;
+	font-size: 12pt;
+	font-weight: 300;
+	letter-spacing: 10px;
+	margin: 0 0 20px;
+	padding: 2px 0;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#restaurant-container,
+#reviews-container,
+#reviews-container {
+	padding: 16px;
+}
+
+#reviews-container h2 {
+	font-size: 24pt;
+	font-weight: 300;
+	padding-bottom: 1pt;
+}
+
+#reviews-list {
+	margin: 0;
+	padding: 0;
+}
+
+#reviews-list li {
+	background-color: #fff;
+	border: 2px solid #f3f3f3;
+	display: block;
+	list-style-type: none;
+	margin: 0 0 30px;
+	overflow: hidden;
+	padding: 0 20px 20px;
+	width: 100%;
+}
+
+#reviews-list li p {
+	margin: 0 auto 8px;
+}
+
+#restaurant-hours td {
+	color: #666;
+}

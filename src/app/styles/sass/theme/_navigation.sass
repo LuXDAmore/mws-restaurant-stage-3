@@ -1,0 +1,30 @@
+// Navigation
+// Footer && Nav
+.main-nav
+	align-items: center;
+
+.main-nav,
+#footer
+	background-color: #333;
+	color: white;
+
+[aria-label="breadcrumb"]
+	padding: 0;
+	text-align: left;
+	min-height: 33px;
+
+#breadcrumb
+	background-color: darken( $primary-color, 23% );
+	li
+		color: white;
+		line-height: 1.5;
+		a
+			text-decoration: underline;
+			&,
+			&:hover,
+			&:active
+				color: white;
+
+#footer
+	a
+		color: $accent-color;

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+		<base href="/" />
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
+		<link rel="manifest" href="manifest.json" />
+		<link rel="icon" type="image/png" href="favicon.png" />
+		<meta name="robots" content="all" />
+
+		<!-- Tricks -->
+		<link rel="dns-prefetch" href="https://mws2-restaurant.netlify.com/" />
+
+		<link rel="preload" href="assets/images/placeholder/map-home.webp" as="image" />
+		<link rel="preload" href="assets/images/placeholder/map-marker.webp" as="image" />
+
+		<link rel="preconnect" href="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8LXp4osGIgtI1SxUafmy6fPsgMq414c&callback=initMap" crossorigin />
+		<link rel="preconnect" href="https://maps.googleapis.com/" crossorigin />
+		<link rel="preconnect" href="https://maps.gstatic.com/" crossorigin />
+
+		<link rel="preload" href="assets/images/400/1.webp" as="image" />
+		<link rel="preload" href="assets/images/400/2.webp" as="image" />
+		<link rel="preload" href="assets/images/400/3.webp" as="image" />
+		<link rel="preload" href="assets/images/400/4.webp" as="image" />
+
+		<!-- WebApp Capable -->
+		<!-- Chrome for Android -->
+		<meta name="mobile-web-app-capable" content="yes" />
+		<!-- Win8 -->
+		<meta http-equiv="cleartype" content="on" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<!-- iOS -->
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<!-- Icons -->
+		<meta name="msapplication-TileImage" content="assets/icons/icon-144x144.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="assets/icons/icon-72x72.png" />
+		<link rel="apple-touch-icon" sizes="96x96" href="assets/icons/icon-96x96.png" />
+		<link rel="apple-touch-icon" sizes="128x128" href="assets/icons/icon-128x128.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="assets/icons/icon-144x144.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png" />
+		<link rel="apple-touch-icon" sizes="192x192" href="assets/icons/icon-192x192.png" />
+		<link rel="apple-touch-icon" sizes="384x384" href="assets/icons/icon-384x384.png" />
+		<link rel="apple-touch-icon" sizes="512x512" href="assets/icons/icon-512x512.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="assets/icons/icon-96x96.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192x192.png" />
+		<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/icon-512x512.png" />
+		<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#2980b9" />
+
+		<!-- App -->
+		<title>RESTAURANT REVIEWS</title>
+		<meta name="description" content="RESTAURANT REVIEWS" />
+		<!-- WebApp Capable -->
+		<meta name="application-name" content="RESTAURANT REVIEWS" />
+		<meta name="msapplication-tooltip" content="RESTAURANT REVIEWS" />
+		<meta name="apple-mobile-web-app-title" content="RESTAURANT REVIEWS" />
+		<meta name="theme-color" content="#2980b9" />
+		<meta name="msapplication-TileColor" content="#2980b9" />
+		<meta name="msapplication-navbutton-color" content="#2980b9" />
+		<!-- Fine App -->
+
+		<!-- inject:css -->
+		<!-- endinject -->
+
+		<!-- inject:performance:js -->
+		<!-- endinject -->
+
+	</head>
+
+	<body class="home">
+
+		<header>
+			<nav class="main-nav">
+				<h1>
+					<a href="index.html" rel="nooper" title="Home">
+						Restaurant Reviews
+					</a>
+				</h1>
+			</nav>
+		</header>
+
+		<main id="maincontent">
+
+			<section id="map-container">
+
+				<div
+					id="map"
+					role="application"
+					aria-label="Map with restaurants"
+					aria-hidden="true"
+				></div>
+
+			</section>
+
+			<section>
+				<form class="filter-options">
+					<fieldset class="fields">
+						<label for="neighborhoods-select">
+							<h2>
+								Filter by neighborhood
+							</h2>
+						</label>
+						<select
+							id="neighborhoods-select"
+							name="neighborhoods"
+						>
+							<option value="all">All Neighborhoods</option>
+						</select>
+					</fieldset>
+
+					<fieldset class="fields">
+						<label for="cuisines-select">
+							<h2>
+								Filter by cuisine
+							</h2>
+						</label>
+						<select
+							id="cuisines-select"
+							name="cuisines"
+						>
+							<option value="all">All Cuisines</option>
+						</select>
+					</fieldset>
+				</form>
+
+				<ul
+					id="restaurants-list"
+					aria-busy="true"
+				>
+
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+
+				</ul>
+
+			</section>
+		</main>
+
+		<footer id="footer">
+			Copyright (c) 2017
+			<a href="index.html" rel="nooper" title="Home">
+				<strong>Restaurant Reviews</strong>
+			</a> All Rights Reserved.
+		</footer>
+
+		<!-- Scripts -->
+		<!-- Prevent Google Fonts: Roboto -->
+		<script>
+
+			// Thanks to: https://stackoverflow.com/questions/25523806/google-maps-v3-prevent-api-from-loading-roboto-font/25902239
+			var head = document.getElementsByTagName( 'head' )[ 0 ]
+				, insertBefore = head.insertBefore
+			;
+
+			head.insertBefore = function( newElement, referenceElement ) {
+
+				if( newElement.href && ~ newElement.href.indexOf( '//fonts.googleapis.com/css?family=Roboto' ) )
+					return;
+
+				insertBefore.call( head, newElement, referenceElement );
+
+			};
+
+		</script>
+
+		<!-- inject:js -->
+		<!-- endinject -->
+
+		<!-- inject:async:defer:js -->
+		<!-- endinject -->
+
+		<!-- inject:service-worker:js -->
+		<!-- endinject -->
+
+	</body>
+
+</html>

@@ -1,0 +1,29 @@
+// Map
+.home
+	#map-container
+		background-size: auto 100%;
+		background-position: center top;
+		background-repeat: no-repeat;
+		background-image: url( '../../assets/images/placeholder/map-home.webp' );
+
+#map-container
+	overflow: hidden;
+	background-color: #e8e8e8;
+
+	#map
+		opacity: 1;
+		will-change: opacity;
+		transition: opacity .1s ease-in;
+
+		&[aria-hidden="true"]
+			opacity: 0;
+
+		.gm-style
+			div
+				&.gmnoprint
+					> img
+						&[draggable="false"]
+							width: auto !important;
+							height: auto !important;
+							max-width: 43px !important;
+							max-height: 68px !important;

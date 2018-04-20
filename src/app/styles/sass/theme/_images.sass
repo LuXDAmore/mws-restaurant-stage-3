@@ -1,0 +1,33 @@
+// Images
+picture,
+#restaurant-img,
+#restaurant-img .restaurant-img,
+#restaurants-list .restaurant-img,
+.restaurant-img
+	display: block;
+	min-height: 273px;
+	margin: 0 auto;
+	height: auto;
+	width: 100%;
+	text-align: center;
+	background-color: transparent;
+
+.restaurant-img
+	opacity: 0;
+	will-change: opacity;
+	transition: opacity .1s ease-in;
+	&.loaded
+		opacity: 1;
+
+#restaurant-img
+	position: relative;
+	&:before
+		display: block;
+		position: absolute;
+		content: "";
+		z-index: 0;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		animation: pulse 1s infinite ease-in-out;
