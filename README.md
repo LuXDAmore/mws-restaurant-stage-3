@@ -35,7 +35,7 @@ _It watch files under the `dist/` folder, on port `4000`, to changing it check `
 
 ### Demos
 
-[Live Netlify](https://mws2-restaurant.netlify.com "Demo Netlify") - [Live Github Pages](https://luxdamore.github.io/mws-restaurant-stage-3/ "Demo Github Pages")
+[Live Netlify](https://mws3-restaurant.netlify.com "Demo Netlify") - [Live Github Pages](https://luxdamore.github.io/mws-restaurant-stage-3/ "Demo Github Pages")
 
 ### Info
 
