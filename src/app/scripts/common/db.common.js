@@ -404,7 +404,7 @@ class DBHelper { // eslint-disable-line
 		extension = ''
 	) {
 
-		return `assets/images/${ size }/${ restaurant.photograph }.${ extension }`;
+		return `assets/images/${ size }/${ restaurant.photograph || 10 }.${ extension }`;
 
 	};
 
