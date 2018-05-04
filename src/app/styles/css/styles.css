@@ -180,6 +180,11 @@ nav h1 a {
 	line-height: 1;
 	border-radius: 2px;
 }
+@media screen and (min-width: 768px) {
+	#restaurants-list li {
+		min-height: 460px;
+	}
+}
 
 #restaurants-list li h3 {
 	font-size: 14pt;
