@@ -427,7 +427,7 @@ class DBHelper { // eslint-disable-line
 				position: restaurant.latlng,
 				title: DBHelper.altTextForRestaurantImages( restaurant ),
 				url: DBHelper.urlForRestaurant( restaurant ),
-				map: map,
+				map,
 				icon,
 			}
 		);

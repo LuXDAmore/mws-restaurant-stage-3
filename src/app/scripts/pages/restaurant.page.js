@@ -184,31 +184,41 @@
 		function fillReviewsHTML( reviews = self.restaurant.reviews ) {
 
 			const container = document.getElementById( 'reviews-container' )
-				, title = document.createElement( 'h2' )
+				, ul = document.getElementById( 'reviews-list' )
 			;
 
-			// Title
-			title.textContent = 'Reviews';
-			container.appendChild( title );
+			// Reset ul
+			ul.textContent = '';
 
 			if( ! reviews || ! reviews.length ) {
 
-				const noReviews = document.createElement( 'p' );
+				const li = document.createElement( 'li' )
+					, title = document.createElement( 'p' )
+					, subtitle = document.createElement( 'em' )
+				;
 
-				noReviews.textContent = 'No reviews yet!';
-				container.appendChild( noReviews );
+				subtitle.textContent = 'No reviews yet!';
+
+				// Append generated elements
+				title.appendChild( subtitle );
+				li.appendChild( title );
+				ul.appendChild( li );
+				container.appendChild( ul );
+
+				ul.setAttribute( 'aria-busy', false );
 
 				return;
 
 			};
 
-			const ul = document.getElementById( 'reviews-list' )
-				, rows = []
-			;
-			reviews.customForEach( review => rows.push( createReviewHTML( review ) ) );
+			// Reviews
+			const li = [];
+			reviews.customForEach( review => li.push( createReviewHTML( review ) ) );
 
-			ul.append( ...rows );
+			ul.append( ...li );
 			container.appendChild( ul );
+
+			ul.setAttribute( 'aria-busy', false );
 
 		};
 

@@ -1,5 +1,6 @@
 // Lists
-#restaurants-list
+#restaurants-list,
+#reviews-list
 	> li
 		box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
 		a
@@ -24,6 +25,18 @@
 				animation: pulse 1s infinite ease-in-out;
 
 #reviews-list
+	> li
+		min-height: 60px;
+	&[aria-busy="true"]
+			> li
+				p
+					display: none;
+				&:before
+					display: none;
+				&:after
+					margin: 0;
+					height: 21px;
+
+#reviews-list
 	li
-		width: auto;
 		padding: 1rem;
