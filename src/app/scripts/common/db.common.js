@@ -404,7 +404,10 @@ class DBHelper { // eslint-disable-line
 		extension = ''
 	) {
 
-		return `assets/images/${ size }/${ restaurant.photograph || 10 }.${ extension }`;
+		if( ! restaurant.photograph )
+			return `https://via.placeholder.com/${ size }.${ extension }/fff/333?text=no+image+available`;
+
+		return `assets/images/${ size }/${ restaurant.photograph }.${ extension }`;
 
 	};
 
