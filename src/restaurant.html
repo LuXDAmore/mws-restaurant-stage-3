@@ -127,10 +127,26 @@
 			<!-- end restaurant -->
 
 			<!-- Beginning reviews -->
-			<section id="reviews-container">
+			<section
+				id="reviews-container"
+				role="presentation"
+			>
 
 				<h2>Reviews</h2>
 
+				<!-- Form -->
+				<div
+					id="add-review-form"
+					role="region"
+					aria-labelledby="toggle-form"
+					aria-hidden="true"
+				>
+					<form>
+						ASD
+					</form>
+				</div>
+
+				<!-- Reviews -->
 				<ul
 					id="reviews-list"
 					aria-busy="true"
@@ -139,6 +155,19 @@
 					<li></li>
 
 				</ul>
+
+				<!-- Accordion actions -->
+				<button
+					id="toggle-form"
+					class="btn btn-primary btn-fab"
+					type="button"
+					data-action="toggle-form"
+					title="Toggle form for adding review"
+					aria-expanded="false"
+					aria-controls="add-review-form"
+				>
+					<span>+</span>
+				</button>
 
 			</section>
 			<!-- End reviews -->

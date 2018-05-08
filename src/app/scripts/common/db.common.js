@@ -2,16 +2,32 @@
 
 const IS_LOCALHOST_OR_DEV = !! ( ~ window.location.href.indexOf( 'localhost' ) || ~ window.location.href.indexOf( 'dev.' ) );
 const URL = IS_LOCALHOST_OR_DEV ? 'http://localhost:1337/restaurants/' : 'data/restaurants.json';
-const DB_NAME = 'restaurant_reviews';
-let restaurants = null;
+const URL_REVIEWS = 'http://localhost:1337/reviews/?restaurant_id=';
+const DB_NAME = 'restaurants';
+const DB_REVIEWS_NAME = 'reviews';
+let restaurants = null
+	, reviews = null
+;
 
 // DB Offline
-const DB = new Dexie( DB_NAME );
+const DB = new Dexie( DB_NAME )
+	, DB_REVIEWS = new Dexie( DB_REVIEWS_NAME )
+;
 DB
 	.version( 1 )
 	.stores(
 		{
 			restaurants: '&id,cuisine_type,neighborhood',
+			reviews: '&id,restaurant_id',
+		}
+	)
+;
+DB_REVIEWS
+	.version( 1 )
+	.stores(
+		{
+			reviews: '++',
+			restaurants: '&restaurant_id,id',
 		}
 	)
 ;
@@ -93,6 +109,8 @@ class DBHelper { // eslint-disable-line
 				.then( returnData )
 				.catch( returnError )
 			;
+
+			return;
 
 		};
 
@@ -433,6 +451,118 @@ class DBHelper { // eslint-disable-line
 		);
 
 		return marker;
+
+	};
+
+	/**
+	 * Fetch all reviews by restaurant id.
+	 */
+	static fetchReviewsByRestaurantId(
+		callback,
+		restaurant_id,
+		review_id
+	) {
+
+		// Check if already in-js
+		if( reviews ) {
+
+			callback( null, reviews );
+			return;
+
+		};
+
+		// Responses
+		function getData( response ) {
+
+			// Oops!. Got an error from server.
+			if( ! response.ok ) {
+
+				window.console.error( response );
+
+				const error = 'Error during Network request';
+				throw new Error( error );
+
+			};
+
+			// Got a success response from server!
+			return response.json();
+
+		};
+		function returnData( response = [] ) {
+
+			reviews = response;
+
+			if( reviews && reviews.length )
+				DB_REVIEWS.reviews.bulkAdd( reviews ).catch( () => DB_REVIEWS.reviews.bulkPut( reviews ) );
+
+			callback( null, reviews );
+
+			return response;
+
+		};
+		function returnError( error ) {
+
+			window.console.error( error );
+
+			callback( error, reviews );
+
+			return error;
+
+		};
+
+		// Fetch
+		function fetchData() {
+
+			// Options
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				referrerPolicy: 'no-referrer',
+			};
+			const req = new Request( `${ URL_REVIEWS }${ restaurant_id }`, options );
+
+			fetch( req )
+				.then( getData )
+				.then( returnData )
+				.catch( returnError )
+			;
+
+			return;
+
+		};
+
+		if( ! review_id ) {
+
+			DB_REVIEWS.reviews.toArray().then(
+				reviews => {
+
+					if( reviews && reviews.length )
+						callback( null, reviews );
+					else
+						fetchData();
+
+					return reviews;
+
+				}
+			).catch( fetchData );
+
+		} else {
+
+			DB_REVIEWS.reviews.get( parseInt( review_id ) ).then(
+				review => {
+
+					if( review )
+						callback( null, review );
+					else
+						fetchData();
+
+					return reviews;
+
+				}
+			).catch( fetchData );
+
+		};
 
 	};
 

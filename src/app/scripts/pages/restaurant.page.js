@@ -20,7 +20,7 @@
 		};
 
 		/**
-		 * Initialize Google map, called from HTML.
+		 * Initialize Google map.
 		 */
 		window.initMapRestaurantInfo = () => {
 
@@ -142,7 +142,10 @@
 				fillRestaurantHoursHTML();
 
 			// fill reviews
-			fillReviewsHTML();
+			if( restaurant.review )
+				fillReviewsHTML( null );
+			else
+				DBHelper.fetchReviewsByRestaurantId( fillReviewsHTML, restaurant.id );
 
 		};
 
@@ -181,31 +184,31 @@
 		/**
 		* Create all reviews HTML and add them to the webpage.
 		*/
-		function fillReviewsHTML( reviews = self.restaurant.reviews ) {
+		function fillReviewsHTML( error, reviews = self.restaurant.reviews ) {
 
-			const container = document.getElementById( 'reviews-container' )
-				, ul = document.getElementById( 'reviews-list' )
-			;
+			const ul = document.getElementById( 'reviews-list' );
 
 			// Reset ul
 			ul.textContent = '';
 
-			if( ! reviews || ! reviews.length ) {
+			if( error || ! reviews || ! reviews.length ) {
 
 				const li = document.createElement( 'li' )
 					, title = document.createElement( 'p' )
 					, subtitle = document.createElement( 'em' )
 				;
 
-				subtitle.textContent = 'No reviews yet!';
+				subtitle.textContent = error ? 'There was an error while fetching reviews!' : 'No reviews yet!';
 
 				// Append generated elements
 				title.appendChild( subtitle );
 				li.appendChild( title );
-				ul.appendChild( li );
-				container.appendChild( ul );
 
+				ul.appendChild( li );
 				ul.setAttribute( 'aria-busy', false );
+
+				if( error )
+					window.console.error( error );
 
 				return;
 
@@ -216,8 +219,6 @@
 			reviews.customForEach( review => li.push( createReviewHTML( review ) ) );
 
 			ul.append( ...li );
-			container.appendChild( ul );
-
 			ul.setAttribute( 'aria-busy', false );
 
 		};
@@ -298,6 +299,20 @@
 			return decodeURIComponent( results[ 2 ].replace( /\+/g, ' ' ) );
 
 		};
+
+		/* Button add review */
+		const buttonToggleForm = document.querySelector( '[data-action="toggle-form"]' );
+		function toggleFormAddReview( e ) {
+
+			e.preventDefault();
+
+			const actualValue = this.getAttribute( 'aria-expanded' );
+			this.setAttribute( 'aria-expanded', ! ( !! actualValue ) );
+
+			window.console.log( actualValue );
+
+		};
+		buttonToggleForm.addEventListener( 'click', toggleFormAddReview, false );
 
 	}
 )( window, document )
