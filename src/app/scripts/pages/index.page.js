@@ -337,9 +337,11 @@
 					400,
 				]
 			);
+			picture.onclick = () => window.location.href = `restaurant.html?id=${ restaurant.id }`;
 
 			// Title
 			name.textContent = restaurant.name;
+			name.onclick = () => window.location.href = `restaurant.html?id=${ restaurant.id }`;
 
 			// Neighborhood
 			neighborhood.textContent = restaurant.neighborhood;

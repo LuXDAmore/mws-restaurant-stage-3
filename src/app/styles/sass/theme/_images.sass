@@ -17,7 +17,7 @@ picture,
 .restaurant-img
 	opacity: 0;
 	will-change: opacity;
-	transition: opacity .1s ease-in;
+	transition: opacity .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
 	&.loaded
 		opacity: 1;
 
@@ -32,4 +32,4 @@ picture,
 		top: 0;
 		right: 0;
 		bottom: 0;
-		animation: pulse 1s infinite ease-in-out;
+		animation: pulse 1s infinite cubic-bezier( 0.25, 0.8, 0.5, 1 );

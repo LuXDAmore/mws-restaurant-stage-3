@@ -1,0 +1,98 @@
+// Single form review
+#add-review-form
+	will-change: auto;
+	transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
+	opacity: 1;
+	height: 365px;
+	margin: 0 auto 24px;
+	&[aria-hidden="true"]
+		height: 0;
+		opacity: 0;
+		margin-bottom: 0;
+
+[data-action="toggle-form"]
+	&[aria-expanded="true"]
+		transform: rotate( 135deg );
+
+form
+	fieldset
+		border: 0;
+		display: block;
+		position: relative;
+		padding: 1rem;
+		margin: 8px auto;
+		text-align: left;
+
+		input,
+		textarea
+			&.question
+				display: block;
+				padding: 5px;
+				font-size: 48px;
+				font-weight: 300;
+				border-radius: 2px;
+				margin: 0;
+				border: none;
+				width: 100%;
+				background: rgba(0, 0, 0, 0);
+				overflow-x: hidden;
+				height: 72px;
+				margin-top: -20px;
+				will-change: auto;
+				transition: all 0.3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
+
+				+ label
+					display: block;
+					position: relative;
+					white-space: nowrap;
+					padding: 0;
+					margin: 0;
+					width: 10%;
+					border-top: 1px solid red;
+					transition: width 0.3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
+					will-change: auto;
+					height: 0;
+
+					> span
+						font-weight: 300;
+						margin: 0;
+						position: absolute;
+						color: #8F8F8F;
+						font-size: 48px;
+						top: -66px;
+						left: 0px;
+						z-index: 1;
+						transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
+						will-change: auto;
+
+				&:focus
+					+ label
+						width: 80%;
+
+				&:focus,
+				&:valid
+					padding-top: 0;
+					margin-top: 0;
+					+ label
+						> span
+							top: -100px;
+							font-size: 22px;
+							color: #333;
+
+				&:valid
+					+ label
+						> span
+							border-color: green;
+
+				&:invalid
+					box-shadow: none;
+
+		textarea
+			&.question
+				&:focus
+					height: 150px;
+				&:focus,
+				&:valid
+					+ label
+						> span
+							top: -150px;

@@ -142,7 +142,49 @@
 					aria-hidden="true"
 				>
 					<form>
-						ASD
+						<fieldset>
+
+							<input type="text" name="name" class="question" id="nme" required autocomplete="off" />
+							<label for="nme"><span>What's your name?</span></label>
+
+						</fieldset>
+						<fieldset class="starability-heartbeat">
+
+							<legend>Rating:</legend>
+
+							<input type="radio" id="no-rate-heartbeat" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+
+							<input type="radio" id="heartbeat-rate1" name="rating" value="1" />
+							<label for="heartbeat-rate1" title="Terrible">1 star</label>
+
+							<input type="radio" id="heartbeat-rate2" name="rating" value="2" />
+							<label for="heartbeat-rate2" title="Not good">2 stars</label>
+
+							<input type="radio" id="heartbeat-rate3" name="rating" value="3" />
+							<label for="heartbeat-rate3" title="Average">3 stars</label>
+
+							<input type="radio" id="heartbeat-rate4" name="rating" value="4" />
+							<label for="heartbeat-rate4" title="Very good">4 stars</label>
+
+							<input type="radio" id="heartbeat-rate5" name="rating" value="5" />
+							<label for="heartbeat-rate5" title="Amazing">5 stars</label>
+
+							<span class="starability-focus-ring"></span>
+
+						</fieldset>
+						<fieldset>
+
+							<textarea name="message" rows="2" class="question" id="msg" required autocomplete="off"></textarea>
+							<label for="msg"><span>What's your message?</span></label>
+
+						</fieldset>
+						<fieldset>
+
+							<button type="submit" class="btn primary">
+								Submit
+							</button>
+
+						</fieldset>
 					</form>
 				</div>
 
@@ -159,7 +201,7 @@
 				<!-- Accordion actions -->
 				<button
 					id="toggle-form"
-					class="btn btn-primary btn-fab"
+					class="btn btn-fab primary"
 					type="button"
 					data-action="toggle-form"
 					title="Toggle form for adding review"

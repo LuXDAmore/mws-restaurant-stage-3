@@ -1,37 +1,37 @@
 {
-	"name": "mws-restaurant-stage-3",
-	"description": "RESTAURANT REVIEWS",
-	"version": "3.0.0",
-	"main": "./dist/index.html",
-	"keywords": [
-		"google",
-		"udacity",
-		"udacity-nanodegree",
-		"restaurant",
-		"nanodegree"
-	],
-	"license": "ISC",
-	"author":
-		"Luca Iaconelli <lucabelli9@gmail.com> (https://github.com/luxdamore)",
-	"private": true,
-	"homepage": "https://luxdamore.github.com/mws-restaurant-stage-3/",
-	"ignore": [
-		"**/.*",
-		"dist",
-		"docs",
-		".tmp",
-		"node_modules",
-		"bower_components",
-		"tests"
-	],
-	"dependencies": {
-		"vanilla-lazyload": "^10.6.0",
-		"dexie": "^2.0.2",
-		"notie": "^4.3.1"
-	},
-	"overrides": {
-		"vanilla-lazyload": {
-			"main": "dist/lazyload.js"
-		}
-	}
+  "name": "mws-restaurant-stage-3",
+  "description": "RESTAURANT REVIEWS",
+  "version": "3.0.0",
+  "main": "./dist/index.html",
+  "keywords": [
+    "google",
+    "udacity",
+    "udacity-nanodegree",
+    "restaurant",
+    "nanodegree"
+  ],
+  "license": "ISC",
+  "author": "Luca Iaconelli <lucabelli9@gmail.com> (https://github.com/luxdamore)",
+  "private": true,
+  "homepage": "https://luxdamore.github.com/mws-restaurant-stage-3/",
+  "ignore": [
+    "**/.*",
+    "dist",
+    "docs",
+    ".tmp",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "vanilla-lazyload": "^10.6.0",
+    "dexie": "^2.0.2",
+    "notie": "^4.3.1",
+    "starability": "^2.3.0"
+  },
+  "overrides": {
+    "vanilla-lazyload": {
+      "main": "dist/lazyload.js"
+    }
+  }
 }

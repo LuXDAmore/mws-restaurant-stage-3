@@ -300,19 +300,29 @@
 
 		};
 
-		/* Button add review */
+		// Button for adding a review
 		const buttonToggleForm = document.querySelector( '[data-action="toggle-form"]' );
-		function toggleFormAddReview( e ) {
 
-			e.preventDefault();
+		if( buttonToggleForm ) {
 
-			const actualValue = this.getAttribute( 'aria-expanded' );
-			this.setAttribute( 'aria-expanded', ! ( !! actualValue ) );
+			function toggleFormAddReview( e ) {
 
-			window.console.log( actualValue );
+				e.preventDefault();
+
+				const oldValue = this.getAttribute( 'aria-expanded' )
+					, newValue = oldValue === 'false' ? true : false
+					, controlledForm = this.getAttribute( 'aria-controls' )
+				;
+
+				this.setAttribute( 'aria-expanded', newValue );
+
+				const form = document.getElementById( controlledForm );
+				form.setAttribute( 'aria-hidden', oldValue );
+
+			};
+			buttonToggleForm.addEventListener( 'click', toggleFormAddReview, false );
 
 		};
-		buttonToggleForm.addEventListener( 'click', toggleFormAddReview, false );
 
 	}
 )( window, document )
