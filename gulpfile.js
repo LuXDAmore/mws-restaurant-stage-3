@@ -805,8 +805,11 @@ gulp.task(
 				],
 				options.read
 			)
-			, injectableAsyncDefer = gulp.src(
+			, injectableAsyncDefer = gulp.src( options.directory.dist + '/app/scripts/app-*.js', options.read )
+			, injectablePreload = gulp.src(
 				[
+					options.directory.dist + '/app/scripts/vendor-*.js',
+					options.directory.dist + '/app/scripts/themes-*.js',
 					options.directory.dist + '/app/scripts/app-*.js',
 				],
 				options.read
@@ -833,6 +836,22 @@ gulp.task(
 					{
 						ignorePath: 'dist',
 						addRootSlash: false,
+					}
+				)
+			)
+			.on( 'error', errorManager )
+			.pipe(
+				inject(
+					injectablePreload,
+					{
+						ignorePath: 'dist',
+						addRootSlash: false,
+						starttag: '<!-- inject:preload:{{ext}} -->',
+						transform: function( filepath ) {
+
+							return '<link rel="preload" href="' + filepath + '" as="script" />';
+
+						},
 					}
 				)
 			)
