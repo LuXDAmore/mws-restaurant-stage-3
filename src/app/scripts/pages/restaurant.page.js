@@ -119,7 +119,8 @@
 		 */
 		function fillRestaurantHTML( restaurant = self.restaurant ) {
 
-			const name = document.getElementById( 'restaurant-name' )
+			const restaurant_container = document.getElementById( 'restaurant-container' )
+				, name = document.getElementById( 'restaurant-name' )
 				, address = document.getElementById( 'restaurant-address' )
 				, picture = document.getElementById( 'restaurant-img' )
 				, cuisine = document.getElementById( 'restaurant-cuisine' )
@@ -146,6 +147,8 @@
 				fillReviewsHTML( null );
 			else
 				DBHelper.fetchReviewsByRestaurantId( fillReviewsHTML, restaurant.id );
+
+			restaurant_container.setAttribute( 'aria-busy', false );
 
 		};
 

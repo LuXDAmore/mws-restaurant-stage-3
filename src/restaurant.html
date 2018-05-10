@@ -118,7 +118,10 @@
 			<!-- End map -->
 
 			<!-- Beginning restaurant -->
-			<section id="restaurant-container">
+			<section
+				id="restaurant-container"
+				aria-busy="true"
+			>
 
 				<h2 id="restaurant-name"></h2>
 				<picture id="restaurant-img"></picture>
@@ -147,13 +150,19 @@
 					<form>
 						<fieldset>
 
+							<legend class="main-title">
+								<h4>
+									Add a review
+								</h4>
+							</legend>
+
 							<input type="text" name="name" class="question" id="nme" required autocomplete="off" />
 							<label for="nme"><span>What's your name?</span></label>
 
 						</fieldset>
 						<fieldset class="starability-heartbeat">
 
-							<legend>Rating:</legend>
+							<legend>Rating</legend>
 
 							<input type="radio" id="no-rate-heartbeat" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
 

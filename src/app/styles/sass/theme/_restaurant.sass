@@ -7,6 +7,19 @@
 #reviews-container
 	position: relative;
 
+#restaurant-container
+	&[aria-busy="true"]
+		h2
+			display: none;
+		&:before
+			height: 29px;
+			max-width: 300px;
+			margin: 16px auto 24px;
+			content: "";
+			display: block;
+			width: 100%;
+			animation: pulse 1s infinite cubic-bezier( 0.25, 0.8, 0.5, 1 );
+
 #restaurant-container,
 #reviews-container
 	max-width: 800px;
@@ -34,4 +47,3 @@
 
 			&:last-child
 				margin-bottom: 0;
-

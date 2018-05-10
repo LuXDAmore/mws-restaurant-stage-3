@@ -3,7 +3,7 @@
 	will-change: auto;
 	transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
 	opacity: 1;
-	height: 365px;
+	height: 528px;
 	margin: 0 auto 24px;
 	&[aria-hidden="true"]
 		height: 0;
@@ -21,18 +21,23 @@ form
 		position: relative;
 		padding: 1rem;
 		margin: 8px auto;
-		text-align: left;
+		text-align: center;
+
+		legend
+			width: 100%;
+			display: block;
+			margin: 8px auto;
 
 		input,
 		textarea
 			&.question
 				display: block;
 				padding: 5px;
-				font-size: 48px;
 				font-weight: 300;
 				border-radius: 2px;
 				margin: 0;
 				border: none;
+				display: block;
 				width: 100%;
 				background: rgba(0, 0, 0, 0);
 				overflow-x: hidden;
@@ -47,9 +52,8 @@ form
 					white-space: nowrap;
 					padding: 0;
 					margin: 0;
-					width: 10%;
 					border-top: 1px solid red;
-					transition: width 0.3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
+					transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
 					will-change: auto;
 					height: 0;
 
@@ -58,16 +62,11 @@ form
 						margin: 0;
 						position: absolute;
 						color: #8F8F8F;
-						font-size: 48px;
 						top: -66px;
 						left: 0px;
 						z-index: 1;
 						transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
 						will-change: auto;
-
-				&:focus
-					+ label
-						width: 80%;
 
 				&:focus,
 				&:valid
@@ -76,7 +75,6 @@ form
 					+ label
 						> span
 							top: -100px;
-							font-size: 22px;
 							color: #333;
 
 				&:valid
@@ -89,10 +87,9 @@ form
 
 		textarea
 			&.question
+				height: 150px;
+				&:valid,
 				&:focus
-					height: 150px;
-				&:focus,
-				&:valid
 					+ label
 						> span
-							top: -150px;
+							top: -180px;
