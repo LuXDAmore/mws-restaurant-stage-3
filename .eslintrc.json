@@ -39,7 +39,7 @@
 			}
 		],
 		"no-inner-declarations": [
-			"off"
+			"warn"
 		],
 		"operator-linebreak": [
 			"warn",
@@ -78,13 +78,13 @@
 		"no-floating-decimal": "warn",
 		"no-multi-spaces": "warn",
 		"no-return-assign": [
-			"off",
+			"warn",
 			"except-parens"
 		],
 		"no-undef": "warn",
 		"no-undef-init": "warn",
 		"no-whitespace-before-property": "warn",
-		"object-property-newline": "off",
+		"object-property-newline": "warn",
 		"padded-blocks": [
 			"warn",
 			{
@@ -101,8 +101,8 @@
 			"always"
 		],
 		"space-infix-ops": "warn",
-		"comma-dangle": "off",
-		"no-extra-semi": "off",
+		"comma-dangle": "warn",
+		"no-extra-semi": "warn",
 		"no-console": "warn",
 		"no-mixed-spaces-and-tabs": "warn",
 		"space-before-function-paren": [
@@ -179,11 +179,7 @@
 			}
 		],
 		"no-unused-vars": [
-			1,
-			{
-				"argsIgnorePattern": "kendo|iElement",
-				"varsIgnorePattern": "vm|kendo|iElement"
-			}
+			"warn"
 		]
 	},
 	"env": {
@@ -192,7 +188,6 @@
 	},
 	"globals": {
 		"$": true,
-		"jQuery": true,
 		"DBHelper": true,
 		"GMapHelper": true,
 		"module": true,
