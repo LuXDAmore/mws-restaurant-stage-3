@@ -39,7 +39,8 @@
 			}
 		],
 		"no-inner-declarations": [
-			"warn"
+			"warn",
+			"functions"
 		],
 		"operator-linebreak": [
 			"warn",
@@ -102,7 +103,7 @@
 		],
 		"space-infix-ops": "warn",
 		"comma-dangle": "warn",
-		"no-extra-semi": "warn",
+		"no-extra-semi": "off",
 		"no-console": "warn",
 		"no-mixed-spaces-and-tabs": "warn",
 		"space-before-function-paren": [
