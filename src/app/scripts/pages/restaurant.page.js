@@ -305,27 +305,25 @@
 
 		// Button for adding a review
 		const buttonToggleForm = document.querySelector( '[data-action="toggle-form"]' );
+		function toggleFormAddReview( e ) {
 
-		if( buttonToggleForm ) {
+			e.preventDefault();
 
-			function toggleFormAddReview( e ) {
+			const oldValue = this.getAttribute( 'aria-expanded' )
+				, newValue = oldValue === 'false' ? true : false
+				, controlledForm = this.getAttribute( 'aria-controls' )
+			;
 
-				e.preventDefault();
+			this.setAttribute( 'aria-expanded', newValue );
 
-				const oldValue = this.getAttribute( 'aria-expanded' )
-					, newValue = oldValue === 'false' ? true : false
-					, controlledForm = this.getAttribute( 'aria-controls' )
-				;
-
-				this.setAttribute( 'aria-expanded', newValue );
-
-				const form = document.getElementById( controlledForm );
-				form.setAttribute( 'aria-hidden', oldValue );
-
-			};
-			buttonToggleForm.addEventListener( 'click', toggleFormAddReview, false );
+			const form = document.getElementById( controlledForm );
+			form.setAttribute( 'aria-hidden', oldValue );
+			form.querySelector( 'input[type="text"]' ).focus();
 
 		};
+
+		if( buttonToggleForm )
+			buttonToggleForm.addEventListener( 'click', toggleFormAddReview, false );
 
 	}
 )( window, document )
