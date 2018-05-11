@@ -3,36 +3,63 @@
 	will-change: auto;
 	transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
 	opacity: 1;
-	height: 528px;
-	margin: 0 auto 24px;
+	height: 430px;
 	&[aria-hidden="true"]
 		height: 0;
 		opacity: 0;
-		margin-bottom: 0;
 
 [data-action="toggle-form"]
 	&[aria-expanded="true"]
 		transform: rotate( 135deg );
 
 form
-	fieldset
+	&.add-review
+		box-shadow: 0 2px 1px -1px rgba( $primary-color, 0.2 ), 0 1px 1px 0 rgba( $primary-color, 0.14 ), 0 1px 3px 0 rgba( $primary-color, 0.12 );
+		background-color: #fff;
+		border: 2px solid $primary-color;
+		display: block;
+		margin-bottom: 24px;
+		min-height: 60px;
+		padding: 1rem;
+
+	> fieldset
 		border: 0;
 		display: block;
 		position: relative;
-		padding: 1rem;
-		margin: 8px auto;
-		text-align: center;
+		padding: 16px;
+		margin: 0 auto 8px;
+		text-align: left;
+		min-height: auto;
+
+		&.starability-heartbeat
+			margin-top: -12px;
+			margin-bottom: 0;
+			margin-right: 16px;
+			margin-left: 16px;
+
+		&.submit-container
+			text-align: right;
+
+		&:first-child
+			padding-top: 26px;
+		&:last-child
+			margin-bottom: 0;
 
 		legend
 			width: 100%;
-			display: block;
-			margin: 8px auto;
+			margin: 0 auto;
+			text-align: left;
+			font-weight: 300;
+			color: $text-dark;
+
+			&.main-title
+				margin: 8px -8px;
 
 		input,
 		textarea
 			&.question
 				display: block;
-				padding: 5px;
+				padding: 8px 8px 4px;
 				font-weight: 300;
 				border-radius: 2px;
 				margin: 0;
@@ -41,7 +68,7 @@ form
 				width: 100%;
 				background: rgba(0, 0, 0, 0);
 				overflow-x: hidden;
-				height: 72px;
+				height: 45px;
 				margin-top: -20px;
 				will-change: auto;
 				transition: all 0.3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
@@ -52,17 +79,19 @@ form
 					white-space: nowrap;
 					padding: 0;
 					margin: 0;
+					width: 0;
 					border-top: 1px solid red;
 					transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
 					will-change: auto;
 					height: 0;
+					border-top: 1px solid $text-dark;
 
 					> span
 						font-weight: 300;
 						margin: 0;
 						position: absolute;
-						color: #8F8F8F;
-						top: -66px;
+						color: $text-dark;
+						top: -40px;
 						left: 0px;
 						z-index: 1;
 						transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
@@ -73,23 +102,32 @@ form
 					padding-top: 0;
 					margin-top: 0;
 					+ label
+						width: 100%;
 						> span
-							top: -100px;
-							color: #333;
+							top: -72px;
+
+				&:invalid
+					+ label
+						border-color: $error-color;
 
 				&:valid
+					color: $success-color;
 					+ label
-						> span
-							border-color: green;
+						border-color: $success-color;
+
 
 				&:invalid
 					box-shadow: none;
 
 		textarea
 			&.question
-				height: 150px;
-				&:valid,
-				&:focus
+				&:focus,
+				&:valid
+					height: 90px;
 					+ label
 						> span
-							top: -180px;
+							top: -120px;
+
+		button
+			&[type="submit"]
+				margin: 0px 8px;

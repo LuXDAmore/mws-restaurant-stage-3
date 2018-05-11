@@ -147,7 +147,7 @@
 					aria-labelledby="toggle-form"
 					aria-hidden="true"
 				>
-					<form>
+					<form class="add-review">
 						<fieldset>
 
 							<legend class="main-title">
@@ -156,43 +156,131 @@
 								</h4>
 							</legend>
 
-							<input type="text" name="name" class="question" id="nme" required autocomplete="off" />
-							<label for="nme"><span>What's your name?</span></label>
+							<input
+								id="nme"
+								type="text"
+								name="name"
+								class="question"
+								required
+								autofocus
+								autocomplete="off"
+							/>
+
+							<label for="nme">
+								<span>
+									What's your name?
+								</span>
+							</label>
+
+						</fieldset>
+						<fieldset>
+
+							<textarea
+								id="msg"
+								name="message"
+								rows="2"
+								class="question"
+								required
+								autocomplete="off"
+							></textarea>
+
+							<label for="msg">
+								<span>
+									What's your comment?
+								</span>
+							</label>
 
 						</fieldset>
 						<fieldset class="starability-heartbeat">
 
-							<legend>Rating</legend>
+							<legend>
+								Rating
+							</legend>
 
-							<input type="radio" id="no-rate-heartbeat" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+							<input
+								id="no-rate-heartbeat"
+								type="radio"
+								class="input-no-rate"
+								name="rating"
+								value="0"
+								aria-label="No rating."
+							/>
 
-							<input type="radio" id="heartbeat-rate1" name="rating" value="1" />
-							<label for="heartbeat-rate1" title="Terrible">1 star</label>
+							<input
+								id="heartbeat-rate1"
+								type="radio"
+								name="rating"
+								value="1"
+							/>
+							<label
+								for="heartbeat-rate1"
+								title="Terrible"
+							>
+								1 star
+							</label>
 
-							<input type="radio" id="heartbeat-rate2" name="rating" value="2" />
-							<label for="heartbeat-rate2" title="Not good">2 stars</label>
+							<input
+								id="heartbeat-rate2"
+								type="radio"
+								name="rating"
+								value="2"
+							/>
+							<label
+								for="heartbeat-rate2"
+								title="Not good"
+							>
+								2 stars
+							</label>
 
-							<input type="radio" id="heartbeat-rate3" name="rating" value="3" />
-							<label for="heartbeat-rate3" title="Average">3 stars</label>
+							<input
+								id="heartbeat-rate3"
+								type="radio"
+								name="rating"
+								value="3"
+							/>
+							<label
+								for="heartbeat-rate3"
+								title="Average"
+							>
+								3 stars
+							</label>
 
-							<input type="radio" id="heartbeat-rate4" name="rating" value="4" />
-							<label for="heartbeat-rate4" title="Very good">4 stars</label>
+							<input
+								id="heartbeat-rate4"
+								type="radio"
+								name="rating"
+								value="4"
+							/>
+							<label
+								for="heartbeat-rate4"
+								title="Very good"
+							>
+								4 stars
+							</label>
 
-							<input type="radio" id="heartbeat-rate5" name="rating" value="5" />
-							<label for="heartbeat-rate5" title="Amazing">5 stars</label>
+							<input
+								id="heartbeat-rate5"
+								type="radio"
+								name="rating"
+								value="5"
+								checked
+							/>
+							<label
+								for="heartbeat-rate5"
+								title="Amazing"
+							>
+								5 stars
+							</label>
 
 							<span class="starability-focus-ring"></span>
 
 						</fieldset>
-						<fieldset>
+						<fieldset class="submit-container">
 
-							<textarea name="message" rows="2" class="question" id="msg" required autocomplete="off"></textarea>
-							<label for="msg"><span>What's your message?</span></label>
-
-						</fieldset>
-						<fieldset>
-
-							<button type="submit" class="btn primary">
+							<button
+								type="submit"
+								class="btn primary"
+							>
 								Submit
 							</button>
 
