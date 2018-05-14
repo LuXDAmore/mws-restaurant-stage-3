@@ -305,6 +305,13 @@
 
 		// Button for adding a review
 		const buttonToggleForm = document.querySelector( '[data-action="toggle-form"]' );
+		function resetForm( form ) {
+
+			form.querySelector( 'input[type="text"]' ).value = '';
+			form.querySelector( 'textarea' ).value = '';
+			form.querySelector( 'input[type="radio"][value="5"]' ).checked = true;
+
+		};
 		function toggleFormAddReview( e ) {
 
 			e.preventDefault();
@@ -318,7 +325,13 @@
 
 			const form = document.getElementById( controlledForm );
 			form.setAttribute( 'aria-hidden', oldValue );
-			form.querySelector( 'input[type="text"]' ).focus();
+
+			if( newValue === true ) {
+
+				resetForm( form );
+				form.querySelector( 'input[type="text"]' ).focus();
+
+			};
 
 		};
 

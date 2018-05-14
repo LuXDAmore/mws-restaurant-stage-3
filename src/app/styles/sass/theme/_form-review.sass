@@ -4,9 +4,11 @@
 	transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
 	opacity: 1;
 	height: 430px;
+	margin-bottom: 24px;
 	&[aria-hidden="true"]
 		height: 0;
 		opacity: 0;
+		margin-bottom: 0;
 
 [data-action="toggle-form"]
 	&[aria-expanded="true"]
@@ -14,9 +16,9 @@
 
 form
 	&.add-review
-		box-shadow: 0 2px 1px -1px rgba( $primary-color, 0.2 ), 0 1px 1px 0 rgba( $primary-color, 0.14 ), 0 1px 3px 0 rgba( $primary-color, 0.12 );
+		box-shadow: 0 2px 1px -1px rgba( $primary-dark-color, 0.2 ), 0 1px 1px 0 rgba( $primary-dark-color, 0.14 ), 0 1px 3px 0 rgba( $primary-dark-color, 0.12 );
 		background-color: #fff;
-		border: 2px solid $primary-color;
+		border: 2px solid $primary-dark-color;
 		display: block;
 		margin-bottom: 24px;
 		min-height: 60px;
@@ -58,6 +60,8 @@ form
 		input,
 		textarea
 			&.question
+				outline-color: $text-dark;
+				line-height: 1.5;
 				display: block;
 				padding: 8px 8px 4px;
 				font-weight: 300;
@@ -66,8 +70,8 @@ form
 				border: none;
 				display: block;
 				width: 100%;
-				background: rgba(0, 0, 0, 0);
 				overflow-x: hidden;
+				border-bottom: 1px solid $text-dark;
 				height: 45px;
 				margin-top: -20px;
 				will-change: auto;
@@ -77,13 +81,12 @@ form
 					display: block;
 					position: relative;
 					white-space: nowrap;
-					padding: 0;
-					margin: 0;
 					width: 0;
 					border-top: 1px solid red;
 					transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
 					will-change: auto;
 					height: 0;
+					top: 3px;
 					border-top: 1px solid $text-dark;
 
 					> span
@@ -91,7 +94,7 @@ form
 						margin: 0;
 						position: absolute;
 						color: $text-dark;
-						top: -40px;
+						top: -43px;
 						left: 0px;
 						z-index: 1;
 						transition: all .3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
@@ -99,18 +102,20 @@ form
 
 				&:focus,
 				&:valid
-					padding-top: 0;
 					margin-top: 0;
+					border-color: transparent;
 					+ label
 						width: 100%;
 						> span
-							top: -72px;
+							top: -75px;
 
 				&:invalid
+					outline-color: $error-color;
 					+ label
 						border-color: $error-color;
 
 				&:valid
+					outline-color: $success-color;
 					color: $success-color;
 					+ label
 						border-color: $success-color;
@@ -126,7 +131,7 @@ form
 					height: 90px;
 					+ label
 						> span
-							top: -120px;
+							top: -123px;
 
 		button
 			&[type="submit"]
