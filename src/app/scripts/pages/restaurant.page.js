@@ -303,13 +303,31 @@
 
 		};
 
-		// Button for adding a review
-		const buttonToggleForm = document.querySelector( '[data-action="toggle-form"]' );
+		/**
+		* Show / Hide form for adding a review
+		*/
+		const buttonToggleForm = document.querySelector( '[data-action="toggle-form"]' )
+			, buttonSubmitForm = document.querySelector( '[type="submit"]' )
+		;
 		function resetForm( form ) {
 
-			form.querySelector( 'input[type="text"]' ).value = '';
-			form.querySelector( 'textarea' ).value = '';
-			form.querySelector( 'input[type="radio"][value="5"]' ).checked = true;
+			const name = form.querySelector( '[name="name"]' )
+				, comments = form.querySelector( '[name="comments"]' )
+				, rating = form.querySelector( 'input[type="radio"][value="5"]' )
+			;
+
+			name.value = '';
+			comments.value = '';
+			rating.checked = true;
+
+			name.classList.remove( 'error' );
+			comments.classList.remove( 'error' );
+			rating.classList.remove( 'error' );
+
+			name.disabled = false;
+			comments.disabled = false;
+			rating.disabled = false;
+			buttonSubmitForm.disabled = false;
 
 		};
 		function toggleFormAddReview( e ) {
@@ -334,9 +352,52 @@
 			};
 
 		};
+		buttonToggleForm.addEventListener( 'click', toggleFormAddReview, false );
 
-		if( buttonToggleForm )
-			buttonToggleForm.addEventListener( 'click', toggleFormAddReview, false );
+		/**
+		* Check data before submit
+		*/
+
+		function sendReview( e ) {
+
+			e.preventDefault();
+
+			const form = this.closest( 'form' )
+				, name = form.querySelector( '[name="name"]' )
+				, comments = form.querySelector( '[name="comments"]' )
+				, rating = form.querySelector( '[name="rating"][checked]' )
+			;
+
+			name.classList.remove( 'error' );
+			comments.classList.remove( 'error' );
+			rating.classList.remove( 'error' );
+
+			if( ! name.value )
+				name.classList.add( 'error' );
+
+			if( ! comments.value )
+			comments.classList.add( 'error' );
+
+			if( ! rating.value )
+				rating.classList.add( 'error' );
+
+			if( name.value
+				&& comments.value
+				&& rating.value
+			) {
+
+				this.disabled = true;
+				name.disabled = true;
+				comments.disabled = true;
+				rating.disabled = true;
+
+				buttonToggleForm.click();
+
+			} else
+				window.alert( 'You must fill the form fields!' );
+
+		};
+		buttonSubmitForm.addEventListener( 'click', sendReview, false );
 
 	}
 )( window, document )
