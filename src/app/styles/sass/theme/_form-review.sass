@@ -63,7 +63,7 @@ form
 				outline-color: $text-dark;
 				line-height: 1.5;
 				display: block;
-				padding: 8px 8px 4px;
+				padding: 8px;
 				font-weight: 300;
 				border-radius: 2px;
 				margin: 0;
@@ -76,6 +76,9 @@ form
 				margin-top: -20px;
 				will-change: auto;
 				transition: all 0.3s cubic-bezier( 0.25, 0.8, 0.5, 1 );
+				transform: translate3d(0, 0, 0);
+				backface-visibility: hidden;
+				perspective: 1000px;
 
 				+ label
 					display: block;
@@ -109,20 +112,36 @@ form
 						> span
 							top: -75px;
 
-				&:invalid
-					outline-color: $error-color;
+				&.error
+					animation: shake .9s cubic-bezier( 0.25, 0.8, 0.5, 1 ) both;
+					border-color: rgba( $error-color, .8 );
+
+				&.error,
+				&:invalid:focus,
+				&:valid:focus
+					outline: 1px dotted;
+
+				&.error,
+				&:invalid:focus
+					outline-color: rgba( $error-color, .8 );
+					box-shadow: 0 0 4px 0 rgba( $error-color, .4 );
 					+ label
 						border-color: $error-color;
 
+				&:valid:focus
+					box-shadow: 0 0 4px 0 rgba( $success-color, .4 );
+
 				&:valid
-					outline-color: $success-color;
+					&.error
+						box-shadow: none;
+						outline-color: transparent;
+						border-color: transparent;
+
+					outline-color: rgba( $success-color, .8 );
 					color: $success-color;
 					+ label
+						width: 100%;
 						border-color: $success-color;
-
-
-				&:invalid
-					box-shadow: none;
 
 		textarea
 			&.question
