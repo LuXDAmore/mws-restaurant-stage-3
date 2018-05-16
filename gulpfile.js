@@ -97,7 +97,7 @@ var gulp = require( 'gulp' )
 				{
 					formatter: 'string',
 					console: false,
-				}
+				},
 			],
 			fix: false,
 			failAfterError: false,
@@ -348,8 +348,18 @@ gulp.task(
 
 		gutil.log( gutil.colors.white.bgCyan( ' [ Build : Vendor : Bower ] ' ) );
 
-		var filterJS = filter( '**/*.js', { restore: true } )
-			, filterCSS = filter( '**/*.css', { restore: true } )
+		var filterJS = filter(
+				'**/*.js',
+				{
+					restore: true,
+				}
+			)
+			, filterCSS = filter(
+				'**/*.css',
+				{
+					restore: true,
+				}
+			)
 			, nameJS = development() ? 'vendor.js' : 'vendor.min.js'
 			, nameCSS = development() ? 'vendor.css' : 'vendor.min.css'
 		;
@@ -385,8 +395,18 @@ gulp.task(
 
 		gutil.log( gutil.colors.white.bgCyan( ' [ Build : Vendor : Themes ] ' ) );
 
-		var filterJS = filter( '**/*.js', { restore: true } )
-			, filterCSS = filter( '**/*.css', { restore: true } )
+		var filterJS = filter(
+				'**/*.js',
+				{
+					restore: true,
+				}
+			)
+			, filterCSS = filter(
+				'**/*.css',
+				{
+					restore: true,
+				}
+			)
 			, nameJS = development() ? 'themes.js' : 'themes.min.js'
 			, namecss = development() ? 'themes.css' : 'themes.min.css'
 		;
@@ -481,7 +501,7 @@ gulp.task(
 							},
 						},
 						{
-							urlPattern: new RegExp( /restaurant\.html.*/ ),
+							urlPattern: new RegExp( /restaurant\.html.*$/ ),
 							handler: 'networkFirst',
 							options: {
 								cacheName: 'restaurant-pages',
@@ -494,7 +514,7 @@ gulp.task(
 							},
 						},
 						{
-							urlPattern: new RegExp( /^http[s]?:\/\/localhost:1337\/restaurants[\/]?/ ),
+							urlPattern: new RegExp( /.*\/restaurants[\/]?$/ ),
 							handler: 'networkFirst',
 							options: {
 								cacheName: 'restaurants-cache',
@@ -510,7 +530,7 @@ gulp.task(
 							},
 						},
 						{
-							urlPattern: new RegExp( /^http[s]?:\/\/localhost:1337\/restaurants\/[1,9]/ ),
+							urlPattern: new RegExp( /.*\/restaurants\/[1,9]$/ ),
 							handler: 'networkFirst',
 							options: {
 								cacheName: 'restaurant-cache',
@@ -523,6 +543,30 @@ gulp.task(
 										200,
 									],
 								},
+							},
+						},
+						{
+							urlPattern: new RegExp( /.*\/reviews\/\?restaurant_id=[1,9]$/ ),
+							handler: 'networkFirst',
+							options: {
+								cacheName: 'reviews-cache',
+								expiration: {
+									maxEntries: 20,
+								},
+								cacheableResponse: {
+									statuses: [
+										0,
+										200,
+									],
+								},
+								plugins: [
+									new workbox.backgroundSync.Plugin(
+										'reviewsQueue',
+										{
+											maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
+										}
+									)
+								],
 							},
 						},
 						{
@@ -559,19 +603,45 @@ gulp.task(
 						},
 					],
 					templatedUrls: {
-						'/': [ 'index.html' ],
-						'restaurant.html?id': [ 'restaurant.html' ],
-						'restaurant.html?id=': [ 'restaurant.html' ],
-						'restaurant.html?id=1': [ 'restaurant.html' ],
-						'restaurant.html?id=2': [ 'restaurant.html' ],
-						'restaurant.html?id=3': [ 'restaurant.html' ],
-						'restaurant.html?id=4': [ 'restaurant.html' ],
-						'restaurant.html?id=5': [ 'restaurant.html' ],
-						'restaurant.html?id=6': [ 'restaurant.html' ],
-						'restaurant.html?id=7': [ 'restaurant.html' ],
-						'restaurant.html?id=8': [ 'restaurant.html' ],
-						'restaurant.html?id=9': [ 'restaurant.html' ],
-						'restaurant.html?id=10': [ 'restaurant.html' ],
+						'/': [
+							'index.html',
+						],
+						'restaurant.html?id': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=1': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=2': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=3': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=4': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=5': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=6': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=7': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=8': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=9': [
+							'restaurant.html',
+						],
+						'restaurant.html?id=10': [
+							'restaurant.html',
+						],
 					},
 					clientsClaim: true,
 					skipWaiting: true,
@@ -608,7 +678,12 @@ gulp.task(
 	function() {
 
 		var critical = require( 'critical' ).stream
-			, css_files = glob.sync( options.directory.dist + '/app/styles/**/*.css', { silent: true } ) || []
+			, css_files = glob.sync(
+				options.directory.dist + '/app/styles/**/*.css',
+				{
+					silent: true,
+				}
+			) || []
 		;
 
 		return gulp
@@ -723,9 +798,24 @@ gulp.task(
 			]
 		;
 
-		var filterHTML = filter( '**/*.html', { restore: true } )
-			, filterManifest = filter( '**/*.json', { restore: true } )
-			, filterSW = filter( '**/*.js', { restore: true } )
+		var filterHTML = filter(
+				'**/*.html',
+				{
+					restore: true,
+				}
+			)
+			, filterManifest = filter(
+				'**/*.json',
+				{
+					restore: true,
+				}
+			)
+			, filterSW = filter(
+				'**/*.js',
+				{
+					restore: true,
+				}
+			)
 		;
 
 		return gulp
@@ -945,8 +1035,8 @@ gulp.task(
 		var nameJS = development() ? 'app.js' : 'app.min.js';
 
 		var scripts = [
-			// FIXME: If you need Polyfills, uncomment this line.
-			// './node_modules/babel-polyfill/dist/polyfill.js',
+			// FIXME: If you dont need Polyfills, comment this line.
+			'./node_modules/babel-polyfill/dist/polyfill.js',
 			options.directory.source + '/app/scripts/common/*.js',
 			options.directory.source + '/app/scripts/pages/*.js',
 		];
@@ -974,8 +1064,21 @@ gulp.task(
 
 		gutil.log( gutil.colors.white.bgCyan( ' [ Build : App : Styles ] ' ) );
 
-		var filterCSS = filter( '**/*.css', { restore: true } )
-			, filterSASS = filter( [ '**/*.scss', '**/*.sass' ], { restore: true } )
+		var filterCSS = filter(
+				'**/*.css',
+				{
+					restore: true,
+				}
+			)
+			, filterSASS = filter(
+				[
+					'**/*.scss',
+					'**/*.sass',
+				],
+				{
+					restore: true,
+				}
+			)
 			, nameCSS = development() ? 'app.css' : 'app.min.css'
 		;
 
@@ -1282,16 +1385,56 @@ gulp.task(
 );
 
 // DEFAULT TASKS
-gulp.task( 'clean:all', [ 'clean', 'github:pages:clean', 'sailsjs:clean' ] );
-gulp.task( 'start', [ 'serve' ] );
-gulp.task( 'watch', [ 'serve' ] );
-gulp.task( 'dev', [ 'serve' ] );
+gulp.task(
+	'clean:all',
+	[
+		'clean',
+		'github:pages:clean',
+		'sailsjs:clean',
+	]
+);
+gulp.task(
+	'start',
+	[
+		'serve',
+	]
+);
+gulp.task(
+	'watch',
+	[
+		'serve',
+	]
+);
+gulp.task(
+	'dev',
+	[
+		'serve',
+	]
+);
 
 gulp.task(
 	'build:development',
 	function( done ) {
 
-		sequence( 'clean', 'environment:development', [ 'copy:requirements', 'copy:assets', 'copy:data' ], [ 'vendor:bower', 'vendor:themes' ], [ 'build:styles', 'build:scripts', 'build:html', ], 'build:inject' )( done );
+		sequence(
+			'clean',
+			'environment:development',
+			[
+				'copy:requirements',
+				'copy:assets',
+				'copy:data',
+			],
+			[
+				'vendor:bower',
+				'vendor:themes',
+			],
+			[
+				'build:styles',
+				'build:scripts',
+				'build:html',
+			],
+			'build:inject'
+		)( done );
 
 	}
 );
@@ -1299,15 +1442,52 @@ gulp.task(
 	'build:testing',
 	function( done ) {
 
-		sequence( 'clean', 'environment:testing', [ 'copy:requirements', 'copy:assets', 'copy:data' ], [ 'vendor:bower', 'vendor:themes' ], [ 'build:styles', 'build:scripts', 'build:html', ], 'build:inject' )( done );
+		sequence(
+			'clean',
+			'environment:testing',
+			[
+				'copy:requirements',
+				'copy:assets',
+				'copy:data',
+			],
+			[
+				'vendor:bower',
+				'vendor:themes',
+			],
+			[
+				'build:styles',
+				'build:scripts',
+				'build:html',
+			],
+			'build:inject'
+		)( done );
 
 	}
 );
-gulp.task(
-	'build:staging',
-	function( done ) {
+gulp.task
 
-		sequence( 'clean', 'environment:staging', [ 'copy:requirements', 'copy:assets', 'copy:data' ], [ 'vendor:bower', 'vendor:themes' ], [ 'build:styles', 'build:scripts', 'build:html', ], 'build:inject' )( done );
+	'build:staging',
+		function( done ) {
+
+		sequence(
+			'clean',
+			'environment:staging',
+			[
+				'copy:requirements',
+				'copy:assets',
+				'copy:data',
+			],
+			[
+				'vendor:bower',
+				'vendor:themes',
+			],
+			[
+				'build:styles',
+				'build:scripts',
+				'build:html',
+			],
+			'build:inject'
+		)( done );
 
 	}
 );
@@ -1315,7 +1495,27 @@ gulp.task(
 	'build:nocompression',
 	function( done ) {
 
-		sequence( 'clean', 'environment:production', [ 'copy:requirements', 'copy:assets', 'copy:data' ], [ 'vendor:bower', 'vendor:themes' ], [ 'build:styles', 'build:scripts', 'build:html' ], 'build:inject', 'generate-criticalcss', 'generate-service-worker' )( done );
+		sequence(
+			'clean',
+			'environment:production',
+			[
+				'copy:requirements',
+				'copy:assets',
+				'copy:data',
+			],
+			[
+				'vendor:bower',
+				'vendor:themes',
+			],
+			[
+				'build:styles',
+				'build:scripts',
+				'build:html',
+			],
+			'build:inject',
+			'generate-criticalcss',
+			'generate-service-worker'
+		)( done );
 
 	}
 );
@@ -1323,11 +1523,37 @@ gulp.task(
 	'build',
 	function( done ) {
 
-		sequence( 'clean', 'environment:production', [ 'copy:requirements', 'copy:assets', 'copy:data' ], [ 'vendor:bower', 'vendor:themes' ], [ 'build:styles', 'build:scripts', 'build:html' ], 'build:inject', 'generate-criticalcss', 'generate-service-worker', 'compress:brotli' )( done );
+		sequence(
+			'clean',
+			'environment:production',
+			[
+				'copy:requirements',
+				'copy:assets',
+				'copy:data',
+			],
+			[
+				'vendor:bower',
+				'vendor:themes',
+			],
+			[
+				'build:styles',
+				'build:scripts',
+				'build:html',
+			],
+			'build:inject',
+			'generate-criticalcss',
+			'generate-service-worker',
+			'compress:brotli'
+		)( done );
 
 	}
 );
-gulp.task( 'default', [ 'build' ] );
+gulp.task(
+	'default',
+	[
+		'build',
+	]
+);
 
 // Github Pages
 gulp.task(
@@ -1337,7 +1563,11 @@ gulp.task(
 	],
 	function( done ) {
 
-		sequence( 'github:pages:clean', 'github:pages:copy', 'github:pages:replace' )( done );
+		sequence(
+			'github:pages:clean',
+			'github:pages:copy',
+			'github:pages:replace'
+		)( done );
 
 	}
 );
@@ -1345,10 +1575,15 @@ gulp.task(
 // Sailsjs
 gulp.task(
 	'sailsjs',
-	[ 'build' ],
+	[
+		'build',
+	],
 	function( done ) {
 
-		sequence( 'sailsjs:clean', 'sailsjs:copy' )( done );
+		sequence(
+			'sailsjs:clean',
+			'sailsjs:copy'
+		)( done );
 
 	}
 );
