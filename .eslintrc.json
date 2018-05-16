@@ -39,8 +39,7 @@
 			}
 		],
 		"no-inner-declarations": [
-			"warn",
-			"functions"
+			"off"
 		],
 		"operator-linebreak": [
 			"warn",
@@ -102,7 +101,10 @@
 			"always"
 		],
 		"space-infix-ops": "warn",
-		"comma-dangle": "warn",
+		"comma-dangle": [
+			"warn",
+			"always"
+		],
 		"no-extra-semi": "off",
 		"no-console": "warn",
 		"no-mixed-spaces-and-tabs": "warn",
@@ -195,6 +197,7 @@
 		"require": true,
 		"google": true,
 		"moment": true,
+		"notie": true,
 		"Dexie": true,
 		"PerformanceObserver": true,
 		"LazyLoad": true
