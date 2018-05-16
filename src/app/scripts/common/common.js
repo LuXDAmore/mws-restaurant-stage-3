@@ -29,12 +29,42 @@ Object.defineProperty( Array.prototype, 'customForEach', { enumerable: false, va
 				if( map )
 					map.setAttribute( 'aria-hidden', false );
 
+				notie.alert(
+					{
+						type: 'warning',
+						text: 'Aaaaah! You seems offline.. But don\'t worry... Everything should work well!',
+						position: 'bottom',
+					}
+				);
+
 			};
 
 			// Add class for offline
-			function handleNetworkChange( event ) {
+			function handleNetworkChange() {
 
 				document.body.classList.toggle( 'offline' );
+
+				if( window.navigator.onLine ) {
+
+					notie.alert(
+						{
+							type: 'info',
+							text: 'Welcome back, to the online-part! ☺',
+							position: 'bottom',
+						}
+					);
+
+				} else {
+
+					notie.alert(
+						{
+							type: 'warning',
+							text: 'Why are you leaving me? You are offline.',
+							position: 'bottom',
+						}
+					);
+
+				};
 
 			};
 			window.addEventListener( 'online', handleNetworkChange, false );
