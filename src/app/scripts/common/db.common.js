@@ -566,4 +566,16 @@ class DBHelper { // eslint-disable-line
 
 	};
 
+	/**
+	 * Add a review.
+	 */
+	static addReviewToRestaurant(
+		callback,
+		review
+	) {
+
+		window.console.log( review );
+
+	};
+
 }
