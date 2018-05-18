@@ -1,20 +1,35 @@
-// TODO: ADD custom background-sync
-// https://github.com/webmaxru/pwatter/blob/workbox/dist/sw.js
+// Custom background-sync
+const reviewsQueueName = 'reviewsQueue';
+workbox.routing.registerRoute(
+	new RegExp( /.*\/reviews\/\?restaurant_id=[1,9]$/ ),
+	workbox.strategies.networkOnly(
+		{
+			plugins: [
+				new workbox.backgroundSync.Plugin(
+					reviewsQueueName,
+					{
+						maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
+					}
+				),
+			],
+		}
+	),
+	'POST'
+);
+
+// Sync
 /*
-	workbox.routing.registerRoute(
-		new RegExp( /^http[s]?:\/\/localhost:1337\/restaurants\/[1,9]\/reviews[\/]?/ ),
-		workbox.strategies.networkOnly(
-			{
-				plugins: [
-					new workbox.backgroundSync.Plugin(
-						'reviewsQueue',
-						{
-							maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
-						}
-					)
-				]
-			}
-		),
-		'POST'
-	);
+self.addEventListener(
+	'sync',
+	event => {
+
+		if( event.tag === reviewsQueueName ) {
+
+			window.console.log( event );
+			// event.waitUntil();
+
+		};
+
+	}
+);
 */
