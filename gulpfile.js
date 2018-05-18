@@ -559,14 +559,6 @@ gulp.task(
 										200,
 									],
 								},
-								plugins: [
-									new workbox.backgroundSync.Plugin(
-										'reviewsQueue',
-										{
-											maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
-										}
-									)
-								],
 							},
 						},
 						{
@@ -1464,10 +1456,9 @@ gulp.task(
 
 	}
 );
-gulp.task
-
+gulp.task(
 	'build:staging',
-		function( done ) {
+	function( done ) {
 
 		sequence(
 			'clean',
