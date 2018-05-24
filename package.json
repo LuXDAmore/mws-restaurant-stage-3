@@ -64,7 +64,7 @@
 		"bower": "^1.8.4",
 		"browser-sync": "^2.24.4",
 		"browserslist": "^2.10.0",
-		"cross-env": "^5.1.5",
+		"cross-env": "^5.1.6",
 		"del": "^3.0.0",
 		"eslint": "^3.19.0",
 		"eslint-plugin-compat": "^1.0.4",
