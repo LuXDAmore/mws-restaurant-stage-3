@@ -313,20 +313,34 @@
 
 			const name = form.querySelector( '[name="name"]' )
 				, comments = form.querySelector( '[name="comments"]' )
-				, rating = form.querySelector( 'input[type="radio"][value="5"]' )
+				, ratings = Array.prototype.slice.call( form.querySelectorAll( 'input[type="radio"]' ) )
 			;
+
+			console.log( ratings );
 
 			name.value = '';
 			comments.value = '';
-			rating.checked = true;
+			ratings.map(
+				rating => {
+
+					rating.classList.remove( 'error' );
+					rating.disabled = false;
+
+					if( parseInt( rating.value ) !== 5 )
+						rating.removeAttribute( 'checked' );
+					else
+						rating.checked = true;
+
+					return rating;
+
+				}
+			);
 
 			name.classList.remove( 'error' );
 			comments.classList.remove( 'error' );
-			rating.classList.remove( 'error' );
 
 			name.disabled = false;
 			comments.disabled = false;
-			rating.disabled = false;
 			buttonSubmitForm.disabled = false;
 
 		};
@@ -396,15 +410,34 @@
 				const review = {
 					name: name.value,
 					comments: comments.value,
-					rating: rating.value,
-					restaurant_id: getParameterByName( 'id' ),
+					rating: parseInt( rating.value ),
+					restaurant_id: parseInt( self.restaurant.id ),
 				};
 
 				return DBHelper.addReviewToRestaurant( review )
-					.then( () => buttonToggleForm.click() )
-					.finally( () => form.setAttribute( 'aria-busy', false ) )
-				;
+					.then(
+						() => {
 
+							// Append the review
+							const ul = document.getElementById( 'reviews-list' );
+							ul.appendChild( createReviewHTML( review ) );
+
+							buttonToggleForm.click();
+
+						}
+					)
+					.finally(
+						() => {
+
+							this.disabled = false;
+							name.disabled = false;
+							comments.disabled = false;
+							rating.disabled = false;
+							form.setAttribute( 'aria-busy', false );
+
+						}
+					)
+				;
 
 			} else
 				window.alert( 'You must fill the form fields!' );

@@ -2,7 +2,7 @@
 
 const IS_LOCALHOST_OR_DEV = !! ( ~ window.location.href.indexOf( 'localhost' ) || ~ window.location.href.indexOf( 'dev.' ) );
 const URL = IS_LOCALHOST_OR_DEV ? 'http://localhost:1337/restaurants/' : 'data/restaurants.json';
-const URL_REVIEWS = 'http://localhost:1337/reviews/?restaurant_id=';
+const URL_REVIEWS = 'http://localhost:1337/reviews/';
 const DB_NAME = 'restaurants';
 const DB_REVIEWS_NAME = 'reviews';
 let restaurants = null
@@ -520,7 +520,7 @@ class DBHelper { // eslint-disable-line
 				},
 				referrerPolicy: 'no-referrer',
 			};
-			const req = new Request( `${ URL_REVIEWS }${ restaurant_id }`, options );
+			const req = new Request( `${ URL_REVIEWS }?restaurant_id=${ restaurant_id }`, options );
 
 			fetch( req )
 				.then( getData )
@@ -569,70 +569,63 @@ class DBHelper { // eslint-disable-line
 	/**
 	 * Add a review.
 	 */
-	static addReviewToRestaurant(
-		callback,
-		review
-	) {
+	static addReviewToRestaurant( review ) {
 
 		window.console.log( review );
 
-		// Fetch
-		function fetchData() {
+		const body = new FormData();
+		Object
+			.keys( review )
+			.filter( key => !! review[ key ] )
+			.map( key => body.append( key, encodeURIComponent( review[ key ] ) ) )
+		;
 
-			// Options
-			const options = {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				referrerPolicy: 'no-referrer',
-			};
-			const req = new Request( URL_REVIEWS, options );
+		// Options
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/x-www-form-urlencoded',
+			},
+			referrerPolicy: 'no-referrer',
+			body,
+		};
+		const req = new Request( URL_REVIEWS, options );
 
-			// Responses
-			function getData( response ) {
+		// Responses
+		function getData( response ) {
 
-				// Oops!. Got an error from server.
-				if( ! response.ok ) {
+			// Oops!. Got an error from server.
+			if( ! response.ok ) {
 
-					window.console.error( response );
+				window.console.error( response );
 
-					const error = 'Error during Network request';
-					throw new Error( error );
-
-				};
-
-				// Got a success response from server!
-				return response.json();
-
-			};
-			function returnError( error ) {
-
-				window.console.error( error );
-
-				notie.alert(
-					{
-						type: 'error',
-						text: 'Error saving the review, the request was enqueued for a day.',
-						position: 'bottom',
-					}
-				);
-
-				return error;
+				const error = 'Error during Network request';
+				throw new Error( error );
 
 			};
 
-			return fetch( req )
-				.then( getData )
-				.catch( returnError )
-			;
+			// Got a success response from server!
+			return response.json();
 
 		};
-		fetchData();
+		function returnError( error ) {
 
-		return DB_REVIEWS.reviews
-			.add( review )
-			// .then( () => 'serviceWorker' in window.navigator && window.navigator.serviceWorker.ready.then( reg => reg.sync.register( 'reviewsQueue' ) ) )
+			window.console.error( error );
+
+			notie.alert(
+				{
+					type: 'error',
+					text: 'Error saving the review, the request was enqueued for a day.',
+					position: 'bottom',
+				}
+			);
+
+			return error;
+
+		};
+
+		DB_REVIEWS.reviews
+			.add( review ) // .then( () => 'serviceWorker' in window.navigator && window.navigator.serviceWorker.ready.then( reg => reg.sync.register( 'reviewsQueue' ) ) )
 			.catch(
 				error => {
 
@@ -648,6 +641,12 @@ class DBHelper { // eslint-disable-line
 
 				}
 			)
+		;
+
+		// Fetch
+		return fetch( req )
+			.then( getData )
+			.catch( returnError )
 		;
 
 	};
