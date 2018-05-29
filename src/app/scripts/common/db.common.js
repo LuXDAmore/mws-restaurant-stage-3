@@ -576,6 +576,60 @@ class DBHelper { // eslint-disable-line
 
 		window.console.log( review );
 
+		// Fetch
+		function fetchData() {
+
+			// Options
+			const options = {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				referrerPolicy: 'no-referrer',
+			};
+			const req = new Request( `${ URL_REVIEWS }${ review.restaurant_id }`, options );
+
+			// Responses
+			function getData( response ) {
+
+				// Oops!. Got an error from server.
+				if( ! response.ok ) {
+
+					window.console.error( response );
+
+					const error = 'Error during Network request';
+					throw new Error( error );
+
+				};
+
+				// Got a success response from server!
+				return response.json();
+
+			};
+			function returnError( error ) {
+
+				window.console.error( error );
+
+				notie.alert(
+					{
+						type: 'error',
+						text: 'Error saving the review, the request was enqueued for a day.',
+						position: 'bottom',
+					}
+				);
+
+				return error;
+
+			};
+
+			return fetch( req )
+				.then( getData )
+				.catch( returnError )
+			;
+
+		};
+		fetchData();
+
 		return DB_REVIEWS.reviews
 			.add( review )
 			// .then( () => 'serviceWorker' in window.navigator && window.navigator.serviceWorker.ready.then( reg => reg.sync.register( 'reviewsQueue' ) ) )

@@ -391,7 +391,20 @@
 				comments.disabled = true;
 				rating.disabled = true;
 
-				buttonToggleForm.click();
+				form.setAttribute( 'aria-busy', true );
+
+				const review = {
+					name: name.value,
+					comments: comments.value,
+					rating: rating.value,
+					restaurant_id: getParameterByName( 'id' ),
+				};
+
+				return DBHelper.addReviewToRestaurant( review )
+					.then( () => buttonToggleForm.click() )
+					.finally( () => form.setAttribute( 'aria-busy', false ) )
+				;
+
 
 			} else
 				window.alert( 'You must fill the form fields!' );
