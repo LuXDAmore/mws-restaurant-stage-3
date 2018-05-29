@@ -25,7 +25,7 @@
 	],
 	"dependencies": {
 		"vanilla-lazyload": "^10.6.0",
-		"dexie": "^2.0.3",
+		"dexie": "^2.0.4",
 		"notie": "^4.3.1",
 		"starability": "^2.3.0"
 	},
