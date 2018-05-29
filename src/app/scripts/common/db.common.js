@@ -587,7 +587,7 @@ class DBHelper { // eslint-disable-line
 				},
 				referrerPolicy: 'no-referrer',
 			};
-			const req = new Request( `${ URL_REVIEWS }${ review.restaurant_id }`, options );
+			const req = new Request( URL_REVIEWS, options );
 
 			// Responses
 			function getData( response ) {
