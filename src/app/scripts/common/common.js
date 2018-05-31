@@ -1,3 +1,6 @@
+// Common var
+window.IS_LOCALHOST_OR_DEV = !! ( ~ window.location.href.indexOf( 'localhost' ) || ~ window.location.href.indexOf( 'dev.' ) );
+
 // Custom forEach should be more performant.
 // FROM => https://stackoverflow.com/a/41462717/3446499
 function customForEach( fn ) {
