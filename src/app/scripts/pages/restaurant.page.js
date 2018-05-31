@@ -376,6 +376,9 @@
 
 			e.preventDefault();
 
+			if( ! window.IS_LOCALHOST_OR_DEV )
+				return window.alert( 'This feature is available only to localhost or in a custom domain!' );
+
 			const form = this.closest( 'form' )
 				, name = form.querySelector( '[name="name"]' )
 				, comments = form.querySelector( '[name="comments"]' )

@@ -1,7 +1,6 @@
 'use strict';
 
-const IS_LOCALHOST_OR_DEV = !! ( ~ window.location.href.indexOf( 'localhost' ) || ~ window.location.href.indexOf( 'dev.' ) );
-const URL = IS_LOCALHOST_OR_DEV ? 'http://localhost:1337/restaurants/' : 'data/restaurants.json';
+const URL = window.IS_LOCALHOST_OR_DEV ? 'http://localhost:1337/restaurants/' : 'data/restaurants.json';
 const URL_REVIEWS = 'http://localhost:1337/reviews/';
 const DB_NAME = 'restaurants';
 const DB_REVIEWS_NAME = 'reviews';
@@ -102,7 +101,7 @@ class DBHelper { // eslint-disable-line
 				},
 				referrerPolicy: 'no-referrer',
 			};
-			const req = new Request( ( IS_LOCALHOST_OR_DEV ? `${ URL }${ id }` : URL ), options );
+			const req = new Request( ( window.IS_LOCALHOST_OR_DEV ? `${ URL }${ id }` : URL ), options );
 
 			fetch( req )
 				.then( getData )
