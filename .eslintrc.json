@@ -105,6 +105,14 @@
 			"warn",
 			"always"
 		],
+		"quotes": [
+			"warn",
+			"single",
+			{
+				"avoidEscape": true,
+				"allowTemplateLiterals": true
+			}
+		],
 		"no-extra-semi": "off",
 		"no-console": "warn",
 		"no-mixed-spaces-and-tabs": "warn",
