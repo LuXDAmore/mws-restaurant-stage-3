@@ -608,8 +608,30 @@ class DBHelper { // eslint-disable-line
 			window.console.error( error );
 
 			let text = 'Error saving the review.';
-			if( ! window.navigator.onLine )
+			if( ! window.navigator.onLine ) {
+
 				text += `You're offline, the request was enqueued for a day.`;
+
+				DB_REVIEWS.reviews
+					.add( review ) // .then( () => 'serviceWorker' in window.navigator && window.navigator.serviceWorker.ready.then( reg => reg.sync.register( 'reviewsQueue' ) ) )
+					.catch(
+						error => {
+
+							window.console.error( error );
+
+							notie.alert(
+								{
+									type: 'error',
+									text: "Can't queue review. IDB error",
+									position: 'bottom',
+								}
+							);
+
+						}
+					)
+				;
+
+			}
 
 			notie.alert(
 				{
@@ -622,25 +644,6 @@ class DBHelper { // eslint-disable-line
 			return error;
 
 		};
-
-		DB_REVIEWS.reviews
-			.add( review ) // .then( () => 'serviceWorker' in window.navigator && window.navigator.serviceWorker.ready.then( reg => reg.sync.register( 'reviewsQueue' ) ) )
-			.catch(
-				error => {
-
-					window.console.error( error );
-
-					notie.alert(
-						{
-							type: 'error',
-							text: "Can't queue review. IDB error",
-							position: 'bottom',
-						}
-					);
-
-				}
-			)
-		;
 
 		// Fetch
 		return fetch( req )
