@@ -1,5 +1,6 @@
-// Custom background-sync
 const reviewsQueueName = 'reviewsQueue';
+
+// Background-sync: Queue request
 workbox.routing.registerRoute(
 	new RegExp( /.*\/reviews\/\?restaurant_id=[1,9]$/ ),
 	workbox.strategies.networkOnly(
@@ -17,19 +18,18 @@ workbox.routing.registerRoute(
 	'POST'
 );
 
-// Sync
-/*
-self.addEventListener(
-	'sync',
-	event => {
+// // Data
+// const queue = new workbox.backgroundSync.Queue( reviewsQueueName );
+// self.addEventListener(
+// 	'fetch',
+// 	event => {
 
-		if( event.tag === reviewsQueueName ) {
+// 		// Clone the request to ensure it's save to read when adding to the Queue.
+// 		const promiseChain = fetch( event.request.clone() )
+// 			.catch( () => queue.addRequest( event.request ) )
+// 		;
 
-			window.console.log( event );
-			// event.waitUntil();
+// 		event.waitUntil( promiseChain );
 
-		};
-
-	}
-);
-*/
+// 	}
+// );
