@@ -29,19 +29,23 @@ workbox.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "88b4a66ded77a4052bfc3818eb291ac0"
+    "revision": "af3839469a18ba54b0069fa25fb62bb6"
   },
   {
-    "url": "app/scripts/app-b2dd11be92.min.js",
-    "revision": "b2dd11be92b5906fce5211ea2c8b8106"
+    "url": "app/scripts/app-e8a3f40b3c.min.js",
+    "revision": "e8a3f40b3c1bd82af70903326806dace"
   },
   {
-    "url": "app/scripts/vendor-7ade5e0aa5.min.js",
-    "revision": "7ade5e0aa530c27e53304b49af61e781"
+    "url": "app/scripts/vendor-df48371b5f.min.js",
+    "revision": "df48371b5fce2cd835c11687926112cc"
   },
   {
-    "url": "app/styles/app-a33da7a317.min.css",
-    "revision": "a33da7a317ee2f07e3e30e1cc73bedb0"
+    "url": "app/styles/app-a4802dad7b.min.css",
+    "revision": "a4802dad7bff9ad9879a7bdcd948b875"
+  },
+  {
+    "url": "app/styles/vendor-861fb01a60.min.css",
+    "revision": "861fb01a603ff22eae48ed907639b5e8"
   },
   {
     "url": "data/restaurants.json",
@@ -49,7 +53,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "7314b11d121ddd1a94c2a31105e6f585"
+    "revision": "9e04fa1ac855f6dca22d7c093e68ebcd"
   },
   {
     "url": "manifest.json",
@@ -57,11 +61,11 @@ self.__precacheManifest = [
   },
   {
     "url": "restaurant.html",
-    "revision": "36e67bb6cc5b90658acf41c6b6497e98"
+    "revision": "2074098b8d6363c1e60ed8bb8b2b82c0"
   },
   {
     "url": "sw-toolbox.js",
-    "revision": "38374e3e2360ee892b81d470cc4adfd6"
+    "revision": "b856cdefb7ff3e938f8598c16a60285e"
   },
   {
     "url": "assets/icons/icon-128x128.png",
@@ -437,55 +441,55 @@ self.__precacheManifest = [
   },
   {
     "url": "/mws-restaurant-stage-3/",
-    "revision": "9e64a15d912f24a75b402accdccf535c"
+    "revision": "595f96cf1c2468434353e3c0322d6ea3"
   },
   {
     "url": "restaurant.html?id",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=1",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=2",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=3",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=4",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=5",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=6",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=7",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=8",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=9",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   },
   {
     "url": "restaurant.html?id=10",
-    "revision": "9ecd5114ed8b2890f6083b1f56db728b"
+    "revision": "06fc158ebee9b5380e624c4944fa2aed"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
@@ -493,8 +497,9 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerRoute(/.*\.css$/, workbox.strategies.cacheFirst({ cacheName: "styles-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":10,"maxAgeSeconds":31536000}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
 workbox.routing.registerRoute(/.*\.(?:webp|png|jpg|jpeg|svg|ico|cur|bmp)$/, workbox.strategies.cacheFirst({ cacheName: "images-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":60,"maxAgeSeconds":604800}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
-workbox.routing.registerRoute(/restaurant\.html.*/, workbox.strategies.networkFirst({ cacheName: "restaurant-pages", plugins: [new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
-workbox.routing.registerRoute(/^http[s]?:\/\/localhost:1337\/restaurants[\/]?/, workbox.strategies.networkFirst({ cacheName: "restaurants-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":10}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
-workbox.routing.registerRoute(/^http[s]?:\/\/localhost:1337\/restaurants\/[1,9]/, workbox.strategies.networkFirst({ cacheName: "restaurant-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":10}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
+workbox.routing.registerRoute(/restaurant\.html.*$/, workbox.strategies.networkFirst({ cacheName: "restaurant-pages", plugins: [new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
+workbox.routing.registerRoute(/.*\/restaurants[\/]?$/, workbox.strategies.networkFirst({ cacheName: "restaurants-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":10}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
+workbox.routing.registerRoute(/.*\/restaurants\/[1,9]$/, workbox.strategies.networkFirst({ cacheName: "restaurant-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":10}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
+workbox.routing.registerRoute(/.*\/reviews\/\?restaurant_id=[1,9]$/, workbox.strategies.networkFirst({ cacheName: "reviews-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":20}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
 workbox.routing.registerRoute(/^https:\/\/(.*)\.(?:googleapis|gstatic)\.com\/(.*)/, workbox.strategies.staleWhileRevalidate({ cacheName: "googleapis-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":30}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
 workbox.routing.registerRoute(/.*\.json$/, workbox.strategies.cacheFirst({ cacheName: "json-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":10}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
