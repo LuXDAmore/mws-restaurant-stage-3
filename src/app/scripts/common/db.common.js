@@ -570,8 +570,6 @@ class DBHelper { // eslint-disable-line
 	 */
 	static addReviewToRestaurant( review ) {
 
-		window.console.log( review );
-
 		const body = JSON.stringify( review );
 
 		// Options
