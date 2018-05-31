@@ -143,7 +143,7 @@
 				fillRestaurantHoursHTML();
 
 			// fill reviews
-			if( restaurant.review )
+			if( restaurant.reviews && restaurant.reviews.length )
 				fillReviewsHTML( null );
 			else
 				DBHelper.fetchReviewsByRestaurantId( fillReviewsHTML, restaurant.id );
@@ -315,8 +315,6 @@
 				, comments = form.querySelector( '[name="comments"]' )
 				, ratings = Array.prototype.slice.call( form.querySelectorAll( 'input[type="radio"]' ) )
 			;
-
-			console.log( ratings );
 
 			name.value = '';
 			comments.value = '';
