@@ -573,18 +573,13 @@ class DBHelper { // eslint-disable-line
 
 		window.console.log( review );
 
-		const body = new FormData();
-		Object
-			.keys( review )
-			.filter( key => !! review[ key ] )
-			.map( key => body.append( key, encodeURIComponent( review[ key ] ) ) )
-		;
+		const body = JSON.stringify( review );
 
 		// Options
 		const options = {
 			method: 'POST',
 			headers: {
-				'Content-type': 'application/x-www-form-urlencoded',
+				'Content-type': 'application/json',
 			},
 			referrerPolicy: 'no-referrer',
 			body,
@@ -612,11 +607,15 @@ class DBHelper { // eslint-disable-line
 
 			window.console.error( error );
 
+			let text = 'Error saving the review.';
+			if( ! window.navigator.onLine )
+				text += `You're offline, the request was enqueued for a day.`;
+
 			notie.alert(
 				{
 					type: 'error',
-					text: 'Error saving the review, the request was enqueued for a day.',
 					position: 'bottom',
+					text,
 				}
 			);
 
