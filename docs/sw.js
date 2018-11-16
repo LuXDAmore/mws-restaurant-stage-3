@@ -29,7 +29,7 @@ workbox.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "180b3a04ca1cc3f2fca72d813ac020a2"
+    "revision": "bdc42f2b7035b54858bd39cacce3a471"
   },
   {
     "url": "app/scripts/app-6bc4020d76.min.js",
@@ -53,7 +53,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "f86b93be25cbc76151a4cba0fc634417"
+    "revision": "57c074779da8318d21b16233eb52453a"
   },
   {
     "url": "manifest.json",
@@ -61,7 +61,7 @@ self.__precacheManifest = [
   },
   {
     "url": "restaurant.html",
-    "revision": "b2ef8db82a4be67758d4175146b49a60"
+    "revision": "660537cfc9f4332743da5e3385163d4b"
   },
   {
     "url": "sw-toolbox.js",
@@ -441,55 +441,55 @@ self.__precacheManifest = [
   },
   {
     "url": "/mws-restaurant-stage-3/",
-    "revision": "1f9f4fac283d117f7ea61cf2046f918a"
+    "revision": "1042dfeedf5cea2869877d4959a0f0b6"
   },
   {
     "url": "restaurant.html?id",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=1",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=2",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=3",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=4",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=5",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=6",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=7",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=8",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=9",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   },
   {
     "url": "restaurant.html?id=10",
-    "revision": "8b408b852a25f19f140c70af6e2bd551"
+    "revision": "404834b89841798a3df44a3baedbbf21"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
