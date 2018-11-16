@@ -24,10 +24,10 @@
 		"tests"
 	],
 	"dependencies": {
-		"vanilla-lazyload": "^10.6.0",
+		"vanilla-lazyload": "^10.19.0",
 		"dexie": "^2.0.4",
 		"notie": "^4.3.1",
-		"starability": "^2.3.0"
+		"starability": "^2.4.1"
 	},
 	"overrides": {
 		"vanilla-lazyload": {
