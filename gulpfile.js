@@ -781,8 +781,8 @@ gulp.task(
 				'<link rel="canonical" href="\/' + options.github.name + '\/">',
 			]
 			, replace_manifest = [
-				'"start_url": "\/index.html"',
-				'"start_url": "\/' + options.github.name + '\/index.html"',
+				'"start_url": "\/index.html?standalone"',
+				'"start_url": "\/' + options.github.name + '\/index.html?standalone"',
 			]
 			, replace_sw = [
 				'"\/",',
