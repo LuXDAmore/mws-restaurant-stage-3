@@ -124,8 +124,20 @@
 			);
 
 		};
-		window.addEventListener( 'scroll', init, false );
-		window.addEventListener( 'resize', init, false );
+		window.addEventListener(
+			'scroll',
+			init,
+			{
+				passive: true,
+			}
+		);
+		window.addEventListener(
+			'resize',
+			init,
+			{
+				passive: true,
+			}
+		);
 
 		// Observe 'restaurant-list' to launch Db request only if in view and only once
 		function createObserver() {
