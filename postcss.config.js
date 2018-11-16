@@ -1,3 +1,3 @@
 module.exports = {
-	from: undefinded,
+	from: undefined,
 };
