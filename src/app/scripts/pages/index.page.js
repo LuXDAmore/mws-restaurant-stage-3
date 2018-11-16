@@ -349,11 +349,11 @@
 					400,
 				]
 			);
-			picture.onclick = () => window.location.href = `restaurant.html?id=${ restaurant.id }`;
+			picture.onclick = () => ( window.location.href = `restaurant.html?id=${ restaurant.id }` );
 
 			// Title
 			name.textContent = restaurant.name;
-			name.onclick = () => window.location.href = `restaurant.html?id=${ restaurant.id }`;
+			name.onclick = () => ( window.location.href = `restaurant.html?id=${ restaurant.id }` );
 
 			// Neighborhood
 			neighborhood.textContent = restaurant.neighborhood;
@@ -392,7 +392,7 @@
 					google.maps.event.addListener(
 						marker,
 						'click',
-						() => window.location.href = marker.url
+						() => ( window.location.href = marker.url )
 					);
 
 					self.markers.push( marker );
