@@ -2,7 +2,7 @@
 	"short_name": "Restaurant",
 	"name": "RESTAURANT REVIEWS",
 	"description": "RESTAURANT REVIEWS BY GOOGLE AND UDACITY",
-	"start_url": "/index.html?standalone",
+	"start_url": "/mws-restaurant-stage-3/index.html",
 	"display": "standalone",
 	"orientation": "portrait",
 	"background_color": "#2980b9",
