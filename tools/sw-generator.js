@@ -72,7 +72,7 @@
 					.register(
 						'[SERVICE-WORKER-NAME]',
 						{
-							scope: './'
+							scope: './',
 						}
 					)
 					.then( SWRegistration )
@@ -80,12 +80,11 @@
 				;
 
 				// Remove listener
-				// window.removeEventListener( 'load', serviceWorker );
+				window.removeEventListener( 'load', serviceWorker );
 
 			};
 			// Register after load, for fast startup
-			// window.addEventListener( 'load', serviceWorker, false );
-			serviceWorker();
+			window.addEventListener( 'load', serviceWorker );
 
 		};
 
