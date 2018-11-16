@@ -3,7 +3,7 @@
 	"name": "RESTAURANT REVIEWS",
 	"description": "RESTAURANT REVIEWS BY GOOGLE AND UDACITY",
 	"start_url": "/index.html?standalone",
-	"display": "fullscreen",
+	"display": "standalone",
 	"orientation": "portrait",
 	"background_color": "#2980b9",
 	"theme_color": "#2980b9",
