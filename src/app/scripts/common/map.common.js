@@ -65,7 +65,7 @@ class GMapHelper { // eslint-disable-line
 				map.setAttribute( 'aria-hidden', false );
 
 				// Accessibility
-				anchors.forEach( anchor => anchor.rel = 'noopener' );
+				anchors.forEach( anchor => ( anchor.rel = 'noopener' ) );
 
 			};
 

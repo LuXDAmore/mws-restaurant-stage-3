@@ -160,7 +160,7 @@ class DBHelper { // eslint-disable-line
 					callback( error, null );
 				else {
 
-					const searchRestaurants = Array.isArray( restaurants ) ? restaurants : [ restaurants ];
+					const searchRestaurants = Array.isArray( restaurants ) ? restaurants : [ restaurants, ];
 					const position = searchRestaurants.map( obj => obj.id ).indexOf( parseInt( id ) );
 
 					// Got the restaurant
@@ -342,7 +342,7 @@ class DBHelper { // eslint-disable-line
 			800,
 			640,
 			480,
-			400
+			400,
 		],
 		types = [
 			'webp',

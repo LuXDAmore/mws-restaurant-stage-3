@@ -12,7 +12,14 @@ function customForEach( fn ) {
         fn( arr[ i ], i );
 
 };
-Object.defineProperty( Array.prototype, 'customForEach', { enumerable: false, value: customForEach } );
+Object.defineProperty(
+	Array.prototype,
+	'customForEach',
+	{
+		enumerable: false,
+		value: customForEach,
+	}
+);
 
 // Common
 (
