@@ -80,11 +80,12 @@
 				;
 
 				// Remove listener
-				window.removeEventListener( 'load', serviceWorker );
+				// window.removeEventListener( 'load', serviceWorker );
 
 			};
 			// Register after load, for fast startup
-			window.addEventListener( 'load', serviceWorker, false );
+			// window.addEventListener( 'load', serviceWorker, false );
+			serviceWorker();
 
 		};
 
