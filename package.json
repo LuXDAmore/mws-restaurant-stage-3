@@ -28,6 +28,7 @@
 		"build:sailsjs": "cross-env NODE_ENV=production gulp sailsjs --silent --no-warnings",
 		"build:github:pages": "cross-env NODE_ENV=production gulp github:pages --silent --no-warnings",
 		"bower": "bower install",
+		"bower:update": "bower update",
 		"gulp": "gulp",
 		"prebower": "bower cache clean",
 		"predev": "npm install",
